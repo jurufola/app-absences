@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vacation-request.component.css']
 })
 export class VacationRequestComponent implements OnInit {
+  abscence:[]
 
   constructor() { }
 
