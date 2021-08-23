@@ -1,0 +1,37 @@
+<div class="container p-4 m-4">
+    <div class="jumbotron border rounded">
+        <div class="text-center p-4 m-4">
+            <img src="../../../assets/images/angular.png" alt=image width="100">
+        </div>
+        <h2 class="login-header text-center p-2 m-2">GDA</h2>
+        <h2 class="login-title text-center p-2 m-2">Gestion des absences</h2>
+        <form [formGroup]="loginForm" class="text-center p-4 m-4" (ngSubmit)="toLogin()">
+            <div [ngClass]="{'has-error': isSubmitted && formControls.email.errors }">
+                <label for="email" name="email" id="email" class="col-2 m-2">Email: </label>
+                <input type="email" formControlName="email" class="col-4 m-2">
+            </div>
+
+            <div *ngIf="isSubmitted && formControls.email.errors" class="alert alert-danger">
+                <div *ngIf="formControls.email.errors.required">
+                    <font color="red">User email is required</font>
+                </div>
+            </div>
+
+            <div [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+                <label for="password" name="password" id="password" class="col-2 m-2">Password: </label>
+                <input type="password" formControlName="password" class="col-4 m-2">
+            </div>
+
+            <div *ngIf="isSubmitted && formControls.password.errors" class="alert alert-danger">
+                <div *ngIf="formControls.password.errors.required">
+                    <font color="red">User password is required</font>
+                </div>
+            </div>
+
+            <p>
+                <button type="submit" class="btn btn-secondary float-right m-4">Login ...</button>
+            </p>
+        </form>
+    </div>
+
+</div>
