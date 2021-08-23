@@ -7,10 +7,15 @@ import java.time.LocalDate;
 public class Absence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name="abs_id")
+    private Long id;
     private String motif;
+    @Column(name="debut")
     private LocalDate localDateDebut;
+    @Column(name="fin")
     private LocalDate localDateFin;
+    private Type type;
+    private Statut statut;
 
 
     // enum for vacation type
@@ -23,7 +28,7 @@ public class Absence {
     }
     // many to one relation between absence entity and user entity
     @ManyToOne
-    @JoinColumn(name="USER_ID")
+    @JoinColumn(name="user_id")
     private User user;
 
     public Absence() {
@@ -33,6 +38,22 @@ public class Absence {
         this.motif = motif;
         this.localDateDebut = localDateDebut;
         this.localDateFin = localDateFin;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Statut getStatut() {
+        return statut;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public String getMotif() {

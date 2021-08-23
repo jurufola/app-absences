@@ -8,16 +8,29 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="role_id")
+    private Long id;
+    @Column(name="role")
     private String nomRole;
     // one to many relation between Role entity and user entity
     @OneToMany(mappedBy="role")
     private Set<User> users;
-    public Role(){
+    public Role(Long id){
+        this.id = id;
         users=new HashSet<User>();
     }
 
-    public Role(String nomRole) {
+    public Role(Long id, String nomRole) {
+        this.id = id;
         this.nomRole = nomRole;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Set<User> getUsers() {
+        return users;
     }
 
     public String getNomRole() {

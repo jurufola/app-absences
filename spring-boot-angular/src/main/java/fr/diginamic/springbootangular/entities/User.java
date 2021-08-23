@@ -12,16 +12,20 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="user_id")
+    private Long id;
     private String login;
     private String motDePasse;
     private String type;
     private String nom;
     private String prenom;
+    @Column(name="con_rest")
     private int conges_payes_restants;
+    @Column(name="rtt_rest")
     private int rtt_restants;
 
     @ManyToOne
-    @JoinColumn(name="ROLE_ID")
+    @JoinColumn(name="role_id")
     private Role role;
 
 
@@ -33,11 +37,11 @@ public class User {
     /* many to one relation between use entity and department entity on users
      */
     @ManyToOne
-    @JoinColumn(name="DEP_ID")
+    @JoinColumn(name="dpt_id")
     /*OneToOne relation between entity and department on User manager
      */
     @OneToOne
-    @JoinColumn(name="DPT_ID")
+    @JoinColumn(name="dpt_id")
     private Department department;
 
     public User(String login, String motDePasse,String type, String nom, String prenom, int conges_payes_restants, int rtt_restants) {
@@ -48,6 +52,10 @@ public class User {
         this.prenom = prenom;
         this.conges_payes_restants = conges_payes_restants;
         this.rtt_restants = rtt_restants;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getLogin() {
