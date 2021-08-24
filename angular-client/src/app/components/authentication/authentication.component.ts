@@ -12,8 +12,7 @@ export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
   isSubmitted:boolean = false;
-  email = '';
-  password = '';
+
 
   constructor(private authService: AuthenticationService,
     private formBuilder: FormBuilder,
@@ -21,15 +20,15 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-
+      email: ['', Validators.required, Validators.email],
+      password: ['', [Validators.required, Validators.minLength(6)]] // least than 6 caracters
     });
+    console.log(this.loginForm);
   }
 
   get formControls(){ return this.loginForm.controls;}
 
-  toLogin(){
+  login(){
     console.log(this.loginForm.value);
     this.isSubmitted = true;
     if(this.loginForm.invalid){

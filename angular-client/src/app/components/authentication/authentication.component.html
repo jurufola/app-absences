@@ -5,13 +5,13 @@
         </div>
         <h2 class="login-header text-center p-2 m-2">GDA</h2>
         <h2 class="login-title text-center p-2 m-2">Gestion des absences</h2>
-        <form [formGroup]="loginForm" class="text-center p-4 m-4" (ngSubmit)="toLogin()">
+        <form [formGroup]="loginForm" class="text-center p-4 m-4" (ngSubmit)="login()">
             <div [ngClass]="{'has-error': isSubmitted && formControls.email.errors }">
                 <label for="email" name="email" id="email" class="col-2 m-2">Email: </label>
                 <input type="email" formControlName="email" class="col-4 m-2">
             </div>
 
-            <div *ngIf="isSubmitted && formControls.email.errors" class="alert alert-danger">
+            <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
                 <div *ngIf="formControls.email.errors.required">
                     <font color="red">User email is required</font>
                 </div>
@@ -22,7 +22,7 @@
                 <input type="password" formControlName="password" class="col-4 m-2">
             </div>
 
-            <div *ngIf="isSubmitted && formControls.password.errors" class="alert alert-danger">
+            <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
                 <div *ngIf="formControls.password.errors.required">
                     <font color="red">User password is required</font>
                 </div>

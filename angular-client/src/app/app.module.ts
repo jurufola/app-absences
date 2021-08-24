@@ -7,13 +7,15 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { AdminComponent } from './components/admin/admin.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
     AdminComponent,
-    ManagerComponent
+    ManagerComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
