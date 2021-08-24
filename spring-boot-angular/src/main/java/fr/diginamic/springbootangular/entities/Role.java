@@ -8,10 +8,13 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String nomRole;
     // one to many relation between Role entity and user entity
     @OneToMany(mappedBy="role")
     private Set<User> users;
+
     public Role(){
         users=new HashSet<User>();
     }
@@ -20,12 +23,28 @@ public class Role {
         this.nomRole = nomRole;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNomRole() {
         return nomRole;
     }
 
     public void setNomRole(String nomRole) {
         this.nomRole = nomRole;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override

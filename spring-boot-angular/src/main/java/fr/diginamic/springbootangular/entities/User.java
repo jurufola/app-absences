@@ -1,8 +1,5 @@
 package fr.diginamic.springbootangular.entities;
 
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,13 +9,15 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String login;
     private String motDePasse;
     private String type;
     private String nom;
     private String prenom;
-    private int conges_payes_restants;
-    private int rtt_restants;
+    private int congesPayesRestants;
+    private int rttRestants;
 
     @ManyToOne
     @JoinColumn(name="ROLE_ID")
@@ -27,27 +26,39 @@ public class User {
 
     @OneToMany(mappedBy="user")
     private Set<Absence> absences;
-    public User(){
-        absences=new HashSet<Absence>();
-    }
+
     /* many to one relation between use entity and department entity on users
      */
     @ManyToOne
     @JoinColumn(name="DEP_ID")
-    /*OneToOne relation between entity and department on User manager
-     */
-    @OneToOne
-    @JoinColumn(name="DPT_ID")
     private Department department;
 
-    public User(String login, String motDePasse,String type, String nom, String prenom, int conges_payes_restants, int rtt_restants) {
+    /*OneToOne relation between entity and department on User manager
+
+    @OneToOne(mappedBy="manager")
+    private Department department; */
+
+    public User(){
+        absences=new HashSet<Absence>();
+    }
+
+    public User(String login, String motDePasse, String type, String nom, String prenom, int congesPayesRestants, int rttRestants) {
         this.type=type;
         this.login = login;
         this.motDePasse = motDePasse;
         this.nom = nom;
         this.prenom = prenom;
-        this.conges_payes_restants = conges_payes_restants;
-        this.rtt_restants = rtt_restants;
+        this.congesPayesRestants = congesPayesRestants;
+        this.rttRestants = rttRestants;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -89,20 +100,44 @@ public class User {
         this.prenom = prenom;
     }
 
-    public int getConges_payes_restants() {
-        return conges_payes_restants;
+    public int getCongesPayesRestants() {
+        return congesPayesRestants;
     }
 
-    public void setConges_payes_restants(int conges_payes_restants) {
-        this.conges_payes_restants = conges_payes_restants;
+    public void setCongesPayesRestants(int congesPayesRestants) {
+        this.congesPayesRestants = congesPayesRestants;
     }
 
-    public int getRtt_restants() {
-        return rtt_restants;
+    public int getRttRestants() {
+        return rttRestants;
     }
 
-    public void setRtt_restants(int rtt_restants) {
-        this.rtt_restants = rtt_restants;
+    public void setRttRestants(int rttRestants) {
+        this.rttRestants = rttRestants;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Set<Absence> getAbsences() {
+        return absences;
+    }
+
+    public void setAbsences(Set<Absence> absences) {
+        this.absences = absences;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -113,8 +148,8 @@ public class User {
                 ", type='" + type + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", conges_payes_restants=" + conges_payes_restants +
-                ", rtt_restants=" + rtt_restants +
+                ", conges_payes_restants=" + congesPayesRestants +
+                ", rtt_restants=" + rttRestants +
                 '}';
     }
 }

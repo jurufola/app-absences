@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class Absence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String motif;
     private LocalDate localDateDebut;
@@ -35,6 +36,14 @@ public class Absence {
         this.localDateFin = localDateFin;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMotif() {
         return motif;
     }
@@ -57,6 +66,14 @@ public class Absence {
 
     public void setLocalDateFin(LocalDate localDateFin) {
         this.localDateFin = localDateFin;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

@@ -11,11 +11,15 @@ public class Department {
     @Id
     // AUTO INCREMENT ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String nom;
-    private User manager;
     //one to many relation between depatment entity and user entity
     @OneToMany(mappedBy="department")
     private Set<User> users;
+
+    @OneToOne
+    private User manager;
 
     public Department() {
         users=new HashSet<User>();
@@ -24,6 +28,14 @@ public class Department {
     public Department(String nom, User manager) {
         this.nom = nom;
         this.manager = manager;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -40,6 +52,14 @@ public class Department {
 
     public void setManager(User manager) {
         this.manager = manager;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override
