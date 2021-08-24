@@ -14,7 +14,8 @@ public class AbsenceService {
     public List<Absence> absences(){
         return absenceRepository.findAll();
     }
-    public void addAbsence(Absence newAbsence) {
-        absenceRepository.save(newAbsence);
+    public String addAbsence(Absence newAbsence) {
+        return absenceRepository.save(newAbsence)!=null ? "Nouvelle abscence " + newAbsence + " rajoutée à la base  " :
+                "Error de rajout";
     }
 }

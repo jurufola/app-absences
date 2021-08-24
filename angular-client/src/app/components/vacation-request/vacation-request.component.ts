@@ -1,6 +1,9 @@
+import { AbsenceType } from './../../models/type';
+import { AbsenceService } from './../../services/absence.service';
 import { Status } from './../../models/status';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Absence } from 'src/app/models/absence';
 
 @Component({
   selector: 'app-vacation-request',
@@ -10,7 +13,7 @@ import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn,
 export class VacationRequestComponent implements OnInit {
   createAbsenceForm: FormGroup
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder, private _absenceService: AbsenceService) { }
 
   ngOnInit(): void {
     this.createAbsenceForm = this._fb.group({
@@ -31,7 +34,13 @@ export class VacationRequestComponent implements OnInit {
 
   createAbsence() {
     console.log(this.createAbsenceForm);
-
+    console.log(this.createAbsenceForm.value.dates.startDate);
+    const abscence = new Absence(AbsenceType[this.createAbsenceForm.value.type],
+      new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
+      this.createAbsenceForm.value.reason, Status.INITIAL);
+    console.log(abscence);
+    this._absenceService.addAbsence(abscence);
+      
   }
 
   private dateRangeValidator(): ValidatorFn {
@@ -55,5 +64,6 @@ export class VacationRequestComponent implements OnInit {
     };
 
   }
+
 
 }
