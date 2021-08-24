@@ -12,5 +12,5 @@ export class Absence {
       this.endDate = endDate;
       this.reason = reason;
       this.status = status;
-    };
+  };
 }
