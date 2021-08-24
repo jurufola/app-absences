@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
-  isSubmitted:boolean = false;
+  isSubmitted = false;
 
 
   constructor(private authService: AuthenticationService,
@@ -20,7 +20,7 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [ Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: ['', [Validators.required, Validators.minLength(6)]] // least than 6 caracters
     });
     console.log(this.loginForm);
@@ -29,13 +29,16 @@ export class AuthenticationComponent implements OnInit {
   get formControls(){ return this.loginForm.controls;}
 
   login(){
-    console.log(this.loginForm.value);
-    this.isSubmitted = true;
-    if(this.loginForm.invalid){
-      return false;
-    }
-    this.authService.toLogin(this.loginForm.value); // for authentication
-    this.router.navigateByUrl('/user');
-  }
+      this.isSubmitted = true;
+      if(this.loginForm.invalid){
+        return;
+      }
 
-}
+      this.authService.toLogin(this.loginForm.value); // for authentication
+      this.router.navigateByUrl('/user');
+  
+      // display form values on success
+      alert('Autentication success');
+    }    
+  }
+ 
