@@ -10,18 +10,15 @@ public class Absence {
     private long id;
 
     private String motif;
-    private LocalDate localDateDebut;
-    private LocalDate localDateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
 
+    public enum Type{ PAYE,RTT,FERIE,SANS_SOLDE; }
+    public enum Status{ INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE; }
 
-    // enum for vacation type
-    public enum Type{
-        PAYE,RTT,FERIE,SANS_SOLDE;
-    }
-    // enum for vacation request status
-    public enum Statut{
-        INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE;
-    }
+    private Type absenceType;
+    private Status requestStatus;
+
     // many to one relation between absence entity and user entity
     @ManyToOne
     @JoinColumn(name="USER_ID")
@@ -30,10 +27,13 @@ public class Absence {
     public Absence() {
     }
 
-    public Absence(String motif, LocalDate localDateDebut, LocalDate localDateFin) {
+    public Absence(String motif, LocalDate dateDebut, LocalDate localDateFin, Type absenceType) {
         this.motif = motif;
-        this.localDateDebut = localDateDebut;
-        this.localDateFin = localDateFin;
+        this.dateDebut = dateDebut;
+        this.dateFin = localDateFin;
+        this.absenceType = absenceType;
+        this.requestStatus = Status.INITIALE;
+
     }
 
     public Long getId() {
@@ -52,20 +52,36 @@ public class Absence {
         this.motif = motif;
     }
 
-    public LocalDate getLocalDateDebut() {
-        return localDateDebut;
+    public LocalDate getDateDebut() {
+        return dateDebut;
     }
 
-    public void setLocalDateDebut(LocalDate localDateDebut) {
-        this.localDateDebut = localDateDebut;
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public LocalDate getLocalDateFin() {
-        return localDateFin;
+    public LocalDate getDateFin() {
+        return dateFin;
     }
 
-    public void setLocalDateFin(LocalDate localDateFin) {
-        this.localDateFin = localDateFin;
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public Type getAbsenceType() {
+        return absenceType;
+    }
+
+    public void setAbsenceType(Type absenceType) {
+        this.absenceType = absenceType;
+    }
+
+    public Status getRequestStatus() {
+        return requestStatus;
+    }
+
+    public void setRequestStatus(Status requestStatus) {
+        this.requestStatus = requestStatus;
     }
 
     public User getUser() {
@@ -80,8 +96,8 @@ public class Absence {
     public String toString() {
         return "Absence{" +
                 "motif='" + motif + '\'' +
-                ", localDateDebut=" + localDateDebut +
-                ", localDateFin=" + localDateFin +
+                ", localDateDebut=" + dateDebut +
+                ", localDateFin=" + dateFin +
                 '}';
     }
 }
