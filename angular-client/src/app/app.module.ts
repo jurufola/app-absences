@@ -8,6 +8,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
+//import { AuthenticationService } from './services/authentication/authentication.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { UserComponent } from './components/user/user.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [/*AuthenticationService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

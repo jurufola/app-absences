@@ -1,25 +1,45 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment';
+//import { HttpClient } from '@angular/common/http';
+//import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private uri = environment.backendUrl;
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
-  constructor() { }
+  //private uri = "htpp://localhost:8090/authentication";
+
+  constructor( /*private http:HttpClient*/) { }
 
  
   public toLogin(_userInfo: User){
     localStorage.setItem('ACCESS_TOKEN', "access_token");
   }
-  public login(){
-    return localStorage.getItem('ACCESS_TOKEN') !== null;
 
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+}
+
+
+  public login(){
+    return localStorage.getItem('currentUser') !== null;
+  
   }
-  public logout(){
-    localStorage.removeItem('ACCESS_TOKEN');
-  }
+
+
+
+
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+}
+
 }
