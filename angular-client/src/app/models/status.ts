@@ -1,6 +1,6 @@
 export enum Status {
-  INITIAL ="initial",
-  PENDING_VALIDATION = "pending validation",
-  VALIDATED = "validated",
-  REJECTED = "rejected"
+  INITIALE /* ="initial" */,
+  EN_ATTENTE_VALIDATION /* = "pending validation" */,
+  VALIDEE /* = "validated" */,
+  REJECTEE /* = "rejected" */
 }

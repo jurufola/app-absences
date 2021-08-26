@@ -1,4 +1,4 @@
-import { AbsenceType } from './../../models/type';
+import { Type } from './../../models/type';
 import { AbsenceService } from './../../services/absence.service';
 import { Status } from './../../models/status';
 import { Component, OnInit } from '@angular/core';
@@ -28,19 +28,20 @@ export class VacationRequestComponent implements OnInit {
       ),
 
       reason: ['', Validators.required],
-      status: [Status.INITIAL]
+      status: [Status.INITIALE]
     });
   }
 
   createAbsence() {
     console.log(this.createAbsenceForm);
     console.log(this.createAbsenceForm.value.dates.startDate);
-    const abscence = new Absence(AbsenceType[this.createAbsenceForm.value.type],
+    console.log(this.createAbsenceForm.value.type);
+    const abscence = new Absence(BigInt('0'), (this.createAbsenceForm.value.type),
       new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
-      this.createAbsenceForm.value.reason, Status.INITIAL);
+      this.createAbsenceForm.value.reason, Status.INITIALE, BigInt('1'));
     console.log(abscence);
     this._absenceService.addAbsence(abscence);
-      
+
   }
 
   private dateRangeValidator(): ValidatorFn {

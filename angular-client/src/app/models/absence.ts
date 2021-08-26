@@ -1,16 +1,8 @@
 import { Status } from './status';
-import { AbsenceType } from './type';
+import { Type } from './type';
 export class Absence {
-  type: AbsenceType;
-  startDate: Date;
-  endDate: Date;
-  reason: string;
-  status: Status;
-  constructor(type: AbsenceType, startDate: Date, endDate: Date, reason: string, status: Status) {
-      this.type = type;
-      this.startDate = startDate;
-      this.endDate = endDate;
-      this.reason = reason;
-      this.status = status;
+
+  constructor(public id: BigInt, public type: Type, public dateDebut: Date, public dateFin: Date, public motif: string,  public status: Status, public userId: bigint) {
+
   };
 }
