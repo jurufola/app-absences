@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
   isSubmitted = false;
+  user: User = null;
 
 
   constructor(private authService: AuthenticationService,
@@ -29,16 +31,35 @@ export class AuthenticationComponent implements OnInit {
   get formControls(){ return this.loginForm.controls;}
 
   login(){
-      this.isSubmitted = true;
-      if(this.loginForm.invalid){
-        return;
-      }
-
-      this.authService.toLogin(this.loginForm.value); // for authentication
-      this.router.navigateByUrl('/user');
   
+    if(this.checkLogin){
+     
+     this.isSubmitted = true;
+     this.router.navigateByUrl('/home');
       // display form values on success
-      alert('Autentication success');
-    }    
+      alert("is Connected !");
+   }
+
+   if(this.loginForm.invalid){
+      return false;
+    }
+
+      //this.authService.toLogin(this.loginForm.value); // for authentication
+     
+    }  
+
+    checkLogin():boolean{
+
+     this.authService.getUser(this.loginForm.get('email').value).subscribe((res:User)=>{
+       this.user = res;
+     });
+     if(this.user != null){
+       if(this.loginForm.get('password').value === this.user.password){
+         return true ;
+       }
+     }
+      return false;
+    }
+    
   }
  

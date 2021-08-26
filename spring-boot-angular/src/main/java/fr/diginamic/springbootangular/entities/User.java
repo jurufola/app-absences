@@ -13,7 +13,6 @@ public class User {
 
     private String login;
     private String motDePasse;
-    private String type;
     private String nom;
     private String prenom;
     private int congesPayesRestants;
@@ -42,8 +41,7 @@ public class User {
         absences=new HashSet<Absence>();
     }
 
-    public User(String login, String motDePasse, String type, String nom, String prenom, int congesPayesRestants, int rttRestants) {
-        this.type=type;
+    public User(String login, String motDePasse, String nom, String prenom, int congesPayesRestants, int rttRestants) {
         this.login = login;
         this.motDePasse = motDePasse;
         this.nom = nom;
@@ -67,13 +65,6 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-    public String getType() {
-        return login;
-    }
-
-    public void setType(String login) {
-        this.type = type;
     }
 
     public String getMotDePasse() {
@@ -145,7 +136,6 @@ public class User {
         return "User{" +
                 "login='" + login + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
-                ", type='" + type + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", conges_payes_restants=" + congesPayesRestants +

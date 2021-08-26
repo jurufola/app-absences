@@ -8,6 +8,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
+import { HomeComponent } from './components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { UserComponent } from './components/user/user.component';
     AuthenticationComponent,
     AdminComponent,
     ManagerComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
