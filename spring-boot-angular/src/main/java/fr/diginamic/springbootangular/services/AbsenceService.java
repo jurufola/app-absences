@@ -4,10 +4,12 @@ import fr.diginamic.springbootangular.entities.Absence;
 import fr.diginamic.springbootangular.entities.User;
 import fr.diginamic.springbootangular.repositories.AbsenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AbsenceService {
     @Autowired
     AbsenceRepository absenceRepository;
