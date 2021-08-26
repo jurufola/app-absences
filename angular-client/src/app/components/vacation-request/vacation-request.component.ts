@@ -4,6 +4,7 @@ import { Status } from './../../models/status';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Absence } from 'src/app/models/absence';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-vacation-request',
@@ -36,9 +37,9 @@ export class VacationRequestComponent implements OnInit {
     console.log(this.createAbsenceForm);
     console.log(this.createAbsenceForm.value.dates.startDate);
     console.log(this.createAbsenceForm.value.type);
-    const abscence = new Absence(BigInt('0'), (this.createAbsenceForm.value.type),
+    const abscence = new Absence(0, (this.createAbsenceForm.value.type),
       new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
-      this.createAbsenceForm.value.reason, Status.INITIALE, BigInt('1'));
+      this.createAbsenceForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6 ));
     console.log(abscence);
     this._absenceService.addAbsence(abscence);
 

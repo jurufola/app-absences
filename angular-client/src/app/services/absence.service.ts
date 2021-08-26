@@ -11,7 +11,7 @@ export class AbsenceService {
   constructor(private _http: HttpClient) { }
 
   addAbsence(absence: Absence) {
-    this._http.post(`${this.uri}absence`, absence, {responseType: 'text'}).subscribe((data: any) => {
+    this._http.post(`${this.uri}absences`, absence, {responseType: 'text'}).subscribe((data: any) => {
       console.log(`réponse => ${data}`);
     }, (error: HttpErrorResponse) => {
       console.log(`erreur => ${error}`);
