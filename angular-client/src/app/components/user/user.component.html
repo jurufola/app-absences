@@ -1,9 +1,10 @@
-<div style="text-align:center">
-    <h4 class="container m-3 p-3">
-        Welcome to the absence management platform !
-    </h4>
-    <p>
+<div>
+    <h4 class="container m-3 p-3">Welcome to the absence management platform !</h4>
+    <div>
+        <p>{{user.email}}</p>
+        <p>{{user.role}}</p>
         <button type="reset" (click)="logout()">Logout</button>
-    </p>
+
+    </div>
     <img src="../../../assets/images/angular.png" width="100" alt="image">
 </div>

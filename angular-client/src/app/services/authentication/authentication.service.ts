@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import {  Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,13 @@ export class AuthenticationService {
   public toLogin(_userInfo: User){
     localStorage.setItem('ACCESS_TOKEN', "access_token");
   }
-  public login(){
-    return localStorage.getItem('ACCESS_TOKEN') !== null;
 
+
+
+
+  public login(){
+    return localStorage.getItem('currentUser') !== null;
+  
   }
   public logout(){
     localStorage.removeItem('ACCESS_TOKEN');
