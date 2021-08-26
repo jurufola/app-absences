@@ -1,11 +1,15 @@
-enum AbsenceType { PAYE, RTT, FERIE, SANS_SOLDE }
+import { User } from "./user";
 
+enum Type { PAYE,RTT,FERIE,SANS_SOLDE }
+enum Status { INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE }
 
 export class Absence {
-  id: string;
-  beginDate: Date;
-  endDate: Date;
+  id: number;
   motif: string;
-  type: AbsenceType;
+  dateDebut: Date;
+  dateFin: Date;
+  absenceType: Type;
+  requestStatus: Status;
+  user: User;
 
 }
