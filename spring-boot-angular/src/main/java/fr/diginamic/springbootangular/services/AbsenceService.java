@@ -4,10 +4,12 @@ import fr.diginamic.springbootangular.entities.Absence;
 import fr.diginamic.springbootangular.entities.User;
 import fr.diginamic.springbootangular.repositories.AbsenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AbsenceService {
     @Autowired
     AbsenceRepository absenceRepository;
@@ -19,11 +21,11 @@ public class AbsenceService {
     public List<Absence> absences(){
         return absenceRepository.findAll();
     }
-    public String addAbsence(Absence newAbsence) {
+    /*public String addAbsence(Absence newAbsence) {
         return absenceRepository.save(newAbsence)!=null ? "Nouvelle abscence " + newAbsence + " rajoutée à la base  " :
                 "Error de rajout";
 
-    }
+    }*/
 
     public Absence getAbsenceById(Long id){
         Optional<Absence> absenceGet = absenceRepository.findById(id);

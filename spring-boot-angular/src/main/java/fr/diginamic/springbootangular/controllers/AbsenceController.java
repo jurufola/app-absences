@@ -15,11 +15,11 @@ public class AbsenceController {
     @Autowired
     AbsenceService absenceService;
 
-    @PostMapping("absence")
+    /*@PostMapping("absence")
     public String addAbsence(@RequestBody Absence absence) {
         return absenceService.addAbsence(absence);
 
-    }
+    }*/
     @GetMapping("absences")
     public List<Absence> getAllAbsences() {
         return absenceService.absences();
