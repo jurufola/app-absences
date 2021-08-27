@@ -5,7 +5,7 @@
     <h5 class="m-4">GDA</h5>
     <h5 class="m-4">Gestion des Absences</h5>
     <div class="card-body">
-        <form [formGroup]="loginForm"  (ngSubmit) = "login()">
+        <form [formGroup]="loginForm">
             <div class="form-group row justify-content-cenetr">
                 <label class="col-6 ">Login</label>
                 <input type="text" formControlName="login" class="col-4 mb-3" [ngClass]="{ 'is-invalid':isSubmitted  && formControls.login.errors }" />

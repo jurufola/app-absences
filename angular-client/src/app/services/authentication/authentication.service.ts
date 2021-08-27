@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  Observable } from 'rxjs';
-import { User } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -17,16 +17,7 @@ export class AuthenticationService {
 
   constructor(private http:HttpClient) { }
 
- 
-  public toLogin(_userInfo: User){
-    localStorage.setItem('ACCESS_TOKEN', "access_token");
-  }
 
-
-  public login(){
-    return localStorage.getItem('user') !== null;
-  
-  }
   public logout(){
     localStorage.removeItem('ACCESS_TOKEN');
   }
