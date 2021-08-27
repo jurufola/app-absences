@@ -7,9 +7,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthenticationService {
 
   private uri = environment.backendUrl;
+
+ 
  
 
   constructor(private http:HttpClient) { }
@@ -20,10 +23,8 @@ export class AuthenticationService {
   }
 
 
-
-
   public login(){
-    return localStorage.getItem('currentUser') !== null;
+    return localStorage.getItem('user') !== null;
   
   }
   public logout(){
@@ -36,8 +37,10 @@ export class AuthenticationService {
    * @returns 
    */
   getUser(login:string) : Observable<User> {
- 
-    return this.http.get<User> (`${this.uri}/user/${login}`);
+  
+
+    console.log(login);
+    return this.http.get<User>(`${this.uri}/user/${login}`);
    
 
   }

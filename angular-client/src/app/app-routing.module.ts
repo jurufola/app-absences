@@ -9,10 +9,10 @@ import { AuthenticationGuard } from './services/guards/authentication.guard';
 
 const routes: Routes = [
 
-  //{ path: '', pathMatch: 'full', redirectTo: 'home'}, // redirection all to the authentication path
+  { path: '', pathMatch: 'full', redirectTo: 'authentication'}, // redirection all to th
+  { path: 'home', component: HomeComponent},// path for all users like employes, manager, admin
   { path: 'authentication', component: AuthenticationComponent }, // path for authentication
   { path: 'user', component: UserComponent},// path for user like employes
-  { path: 'home', component: HomeComponent},// path for all users like employes, manager, admin
   { path: 'admin', component: AdminComponent, canActivate: [AuthenticationGuard] }, // path for administrator
   { path: 'manager', component: ManagerComponent, canActivate: [AuthenticationGuard] } // path for manager
 

@@ -1,10 +1,7 @@
 export class User {
   
-    email:string;
+    login:string;
     password:string;
-    firstname:string;
+    username:string;
     role:string;
-
-  
-    
 }
