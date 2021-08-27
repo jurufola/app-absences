@@ -23,12 +23,12 @@ export class VacationRequestComponent implements OnInit {
         {
           startDate: ['', [Validators.required/* , this.dateRangeValidator() */]],
           endDate: ['', [Validators.required, /* this.dateRangeValidator() */]],
-        }, {validator: this.dateRangeValidator()}
+        }, { validator: this.dateRangeValidator() }
 
 
       ),
 
-      reason: ['', Validators.required],
+      reason: ['', this.reasonConditionnallyValidator('type', 3)],
       status: [Status.INITIALE]
     });
   }
@@ -39,7 +39,7 @@ export class VacationRequestComponent implements OnInit {
     console.log(this.createAbsenceForm.value.type);
     const abscence = new Absence(0, (this.createAbsenceForm.value.type),
       new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
-      this.createAbsenceForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6 ));
+      this.createAbsenceForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6));
     console.log(abscence);
     this._absenceService.addAbsence(abscence);
 
@@ -48,7 +48,7 @@ export class VacationRequestComponent implements OnInit {
   private dateRangeValidator(): ValidatorFn {
     return (group: AbstractControl): { [key: string]: any } | null => {
       let invalid = false;
-      if(!this.createAbsenceForm) {
+      if (!this.createAbsenceForm) {
         return null;
       }
       /*const from = this.createAbsenceForm.value.dates.startDate;
@@ -65,6 +65,22 @@ export class VacationRequestComponent implements OnInit {
       //return invalid ? { invalidRange: {value: group.value } } : null;
     };
 
+  }
+  private reasonConditionnallyValidator(controlName: string, conditionnalValue: any): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+
+      if (!this.createAbsenceForm) {
+        return null;
+      }
+      console.log('I m validating the reason');
+      console.log("this.createAbsenceForm.get(controlName).value => " + this.createAbsenceForm.get(controlName).value);
+      console.log("conditionnalValue => " + conditionnalValue);
+      if(this.createAbsenceForm.get(controlName).value === conditionnalValue) {
+        console.log(this.createAbsenceForm.get(controlName).value);
+        return Validators.required;
+      }
+      return null;
+    }
   }
 
 
