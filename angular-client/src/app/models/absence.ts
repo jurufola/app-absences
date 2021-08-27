@@ -1,7 +1,7 @@
 import { User } from "./user";
 
-enum Type { PAYE,RTT,FERIE,SANS_SOLDE }
-enum Status { INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE }
+export enum Type { PAYE,RTT,FERIE,SANS_SOLDE }
+export enum Status { INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE }
 
 export class Absence {
   id: number;

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Absence } from 'src/app/models/absence';
+import { Absence, Type } from 'src/app/models/absence';
 
 @Component({
   selector: 'app-modification-absence',
@@ -13,6 +13,7 @@ import { Absence } from 'src/app/models/absence';
 export class ModificationAbsenceComponent implements OnInit {
   editForm: FormGroup;
   absence: Absence = null;
+  absenceEnumType = Type;
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
     private abs: AbsenceService) {
@@ -23,6 +24,7 @@ export class ModificationAbsenceComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.abs.editAbsence(params['id']).subscribe(res => {
         this.absence = res;
+        console.log('absence : ' + this.absence.dateDebut);
       })
     })
   }
