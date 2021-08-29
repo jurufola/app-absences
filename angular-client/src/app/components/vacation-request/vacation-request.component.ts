@@ -28,9 +28,27 @@ export class VacationRequestComponent implements OnInit {
 
       ),
 
-      reason: ['', this.reasonConditionnallyValidator('type', 3)],
+      reason: ['', []],
       status: [Status.INITIALE]
     });
+
+    this.createAbsenceForm.get('type').valueChanges
+    .subscribe(value => {
+      console.log(this);
+      if(value==3) {
+        /* console.log("Je suis dans le if " + value);
+        console.log("this.createAbsenceForm avant " + this.createAbsenceForm);
+        console.log("validator reason avant " + this.createAbsenceForm.get('reason').validator) */
+        this.createAbsenceForm.controls['reason'].setValidators([Validators.required]);
+        console.log("this.createAbsenceForm apres" + this.createAbsenceForm);
+
+        console.log("validator reason après " + this.createAbsenceForm.get('reason').validator)
+      } else {
+        this.createAbsenceForm.controls['reason'].clearValidators();
+      }
+      this.createAbsenceForm.controls['reason'].updateValueAndValidity();
+    }
+);
   }
 
   createAbsence() {

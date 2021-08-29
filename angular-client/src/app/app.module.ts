@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { VacationRequestComponent } from './components/vacation-request/vacation-request.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AbsenceService } from './services/absence.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [AbsenceService],
   bootstrap: [AppComponent]
