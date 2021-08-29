@@ -77,7 +77,8 @@ export class VacationRequestComponent implements OnInit {
       console.log(`Date de fin ${to}`);
       if (from && to) {
         invalid = (new Date(from).valueOf()) > (new Date(to).valueOf());
-        console.log(`invalid => ${invalid}`)
+        console.log(`invalid => ${invalid}`);
+        console.log(this.createAbsenceForm);
       }
       return invalid ? { invalidRange: { from, to } } : null;
       //return invalid ? { invalidRange: {value: group.value } } : null;
