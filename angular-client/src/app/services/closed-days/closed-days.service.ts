@@ -16,7 +16,7 @@ export class ClosedDaysService {
 
   getClosedDays(): Observable <ClosedDay> {
     
-    return this.http.get<ClosedDay> (` ${this.uri}/closeddays`);
+    return this.http.get<ClosedDay> (` ${this.uri}/closed-days`);
   }
 
 

@@ -13,9 +13,9 @@ export class ClosedDaysComponent implements OnInit {
 
   constructor(private closedDaysService: ClosedDaysService) { }
 
-  ngOnInit(): void {
-
-    this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
+  ngOnInit() {
+    console.log('ok');
+    return this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
       this.closedDays = res;
     });
   }
