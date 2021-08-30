@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Absence } from 'src/app/models/absence';
 import { User } from 'src/app/models/user';
+import { FlashMessagesService } from 'flash-messages-angular';
 
 @Component({
   selector: 'app-vacation-request',
@@ -12,9 +13,10 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./vacation-request.component.css']
 })
 export class VacationRequestComponent implements OnInit {
-  createAbsenceForm: FormGroup
+  createAbsenceForm: FormGroup;
+  messageSuccess: string;
 
-  constructor(private _fb: FormBuilder, private _absenceService: AbsenceService) { }
+  constructor(private _fb: FormBuilder, private _absenceService: AbsenceService, private _flashMessagesService: FlashMessagesService) { }
 
   ngOnInit(): void {
     this.createAbsenceForm = this._fb.group({
@@ -59,7 +61,8 @@ export class VacationRequestComponent implements OnInit {
       new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
       this.createAbsenceForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6));
     console.log(abscence);
-    this._absenceService.addAbsence(abscence);
+    this._absenceService.addAbsence(this.createAbsenceForm);
+    //this._flashMessagesService.show(this.messageSuccess, { cssClass: 'alert-success', timeout: 3000 });
 
   }
 

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { VacationRequestComponent } from './components/vacation-request/vacation-request.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AbsenceService } from './services/absence.service';
+import { FlashMessagesModule } from 'flash-messages-angular';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AbsenceService } from './services/absence.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [AbsenceService],
   bootstrap: [AppComponent]
