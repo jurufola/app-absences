@@ -1,1 +1,24 @@
-<p>closed-days works!</p>
+<div class="container m-4 p-3">
+
+    <h4 class="m-3 p-4">Visualiser jours fériés et RTT employeur</h4>
+    <div class="m-3 p-2">
+        Année
+        <input type="number" max="2200" min="1970" class="m-2" value="2017" />
+        <button type="submit" class="btn btn-outline-secondary p-1">Visualiser</button>
+    </div>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Jour</th>
+            <th>Commentaires</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let elt of closedDays">
+                <td>{{elt.date}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>

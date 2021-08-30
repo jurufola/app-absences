@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClosedDay } from 'src/app/models/closed-day';
+import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
   selector: 'app-closed-days',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClosedDaysComponent implements OnInit {
 
-  constructor() { }
+  closedDays: ClosedDay = null;
+
+  constructor(private closedDaysService: ClosedDaysService) { }
 
   ngOnInit(): void {
+
+    this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
+      this.closedDays = res;
+    });
   }
 
 }
