@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
+=======
+>>>>>>> enyon-closed-days
 import { ClosedDay } from 'src/app/models/closed-day';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
@@ -10,6 +13,7 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 })
 export class ClosedDaysComponent implements OnInit {
 
+<<<<<<< HEAD
 holidays:ClosedDay = null;
 
 
@@ -33,6 +37,17 @@ holidays:ClosedDay = null;
     return false;
   }
 
+=======
+  closedDays: ClosedDay = null;
+
+  constructor(private closedDaysService: ClosedDaysService) { }
+
+  ngOnInit() {
+    console.log('ok');
+    return this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
+      this.closedDays = res;
+    });
+>>>>>>> enyon-closed-days
   }
 
 

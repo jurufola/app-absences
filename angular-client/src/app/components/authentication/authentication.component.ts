@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [ Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      login: ['', [ Validators.required ]],
       password: ['', [Validators.required, Validators.minLength(6)]] // least than 6 caracters
     });
     console.log(this.loginForm);
@@ -31,30 +31,35 @@ export class AuthenticationComponent implements OnInit {
   get formControls(){ return this.loginForm.controls;}
 
   login(){
+
+    console.log('login');
   
-    if(this.checkLogin){
+    if(this.checkLogin()){
      
      this.isSubmitted = true;
-     this.router.navigateByUrl('/home');
-      // display form values on success
-      alert("is Connected !");
+     this.loginForm.get('login').value;
+     console.log('connection reussie');
+     //this.router.navigateByUrl('/user');
+      
+   }else{
+     this.loginForm.invalid;
+     return false;
    }
-
-   if(this.loginForm.invalid){
-      return false;
-    }
 
       //this.authService.toLogin(this.loginForm.value); // for authentication
      
     }  
 
+    
     checkLogin():boolean{
+      console.log('login: ' + this.loginForm.get('login').value);
 
-     this.authService.getUser(this.loginForm.get('email').value).subscribe((res:User)=>{
+     this.authService.getUser(this.loginForm.get('login').value).subscribe((res:User)=>{
        this.user = res;
      });
+     //console.log(this.user.login);
      if(this.user != null){
-       if(this.loginForm.get('password').value === this.user.password){
+       if((this.loginForm.get('password').value).isEquals(this.user.motDePasse)){
          return true ;
        }
      }

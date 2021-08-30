@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ClosedDaysService {
 
+<<<<<<< HEAD
   private uri = environment.backendUrl;
 
   constructor(private http: HttpClient) {}
@@ -25,4 +26,17 @@ export class ClosedDaysService {
 
 
   
+=======
+  uri = environment.backendUrl;
+
+  constructor(private http: HttpClient) { }
+
+
+  getClosedDays(): Observable <ClosedDay> {
+    
+    return this.http.get<ClosedDay> (` ${this.uri}/closed-days`);
+  }
+
+
+>>>>>>> enyon-closed-days
 }
