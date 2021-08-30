@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ClosedDay } from 'src/app/models/closed-day';
+import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
   selector: 'app-closed-days',
@@ -7,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClosedDaysComponent implements OnInit {
 
-  constructor() { }
+holidays:ClosedDay = null;
 
-  ngOnInit(): void {
+
+  constructor(private closedDaysService: ClosedDaysService ) { }
+
+  ngOnInit(){
+    if(this.getAllDatas()){
+      return  this.closedDaysService.getDatas();
+    }
+    
   }
 
-}
+  getAllDatas():boolean {
+
+    this.closedDaysService.getDatas().subscribe((res:ClosedDay)=> {
+      this.holidays = res;
+    });
+    if(this.holidays !=null){
+      return true;
+    }
+    return false;
+  }
+
+  }
+
+
+
+
+
+
+
+  
+
+  
+

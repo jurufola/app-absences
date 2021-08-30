@@ -1,1 +1,30 @@
-<p>closed-days works!</p>
+<div class="container border-rounded p-4 m-3">
+
+    <h5 class="text-center m-3 p-2">Jours fériés et RTT employeurs</h5>
+
+    <div class="text-center m-3 p-2">
+        Année
+        <input type="number" step="1" min="1990" max="2200" class="m-3" />
+        <button type="submit" class="border-rounded btn btn-info"> Visualiser</button>
+    </div>
+
+    <table class="table bg-light table-bordered text-center border-rounded">
+        <thead>
+            <tr class="border rounded">
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Jour</th>
+                <th scope="col">Commentaires</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let elt of holidays">
+                <td>{{elt.date}}</td>
+                <td>{{elt.Category}}</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
