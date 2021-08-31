@@ -21,7 +21,7 @@ public class UserController {
     public User getUserByLogin(@PathVariable("login") String login){
         return userService.getUserByLogin(login);
     }
-    
+
     @GetMapping("user/{login}/{password}")
     public User getUserByLoginPassword(@PathVariable("login") String login, @PathVariable("password") String password){
         return userService.getUserByLoginPassword(login, password);

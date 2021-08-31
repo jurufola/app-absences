@@ -19,7 +19,6 @@ import { AuthenticationService } from './services/authentication/authentication.
     ClosedDaysComponent,
     HomeComponent,
     NavmenuComponent,
-    //HomeComponent
   ],
   imports: [
     BrowserModule,

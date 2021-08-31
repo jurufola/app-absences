@@ -21,9 +21,9 @@ public class User {
     private int congesPayesRestants;
     private int rttRestants;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name="ROLE_ID")
+    @JoinColumn(name="ROLE_ID", referencedColumnName = "ID")
     private Role role;
 
     @JsonManagedReference
