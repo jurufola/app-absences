@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from '../../models/role';
 
 @Component({
-  selector: 'app-gestion-des-absences',
-  templateUrl: './gestion-des-absences.component.html',
-  styleUrls: ['./gestion-des-absences.component.css']
+  selector: 'app-gestion-absences',
+  templateUrl: './gestion-absences.component.html',
+  styleUrls: ['./gestion-absences.component.css']
 })
 export class GestionDesAbsencesComponent implements OnInit {
   absences: Absence[];

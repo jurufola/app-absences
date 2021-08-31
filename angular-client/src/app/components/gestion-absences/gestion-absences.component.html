@@ -18,9 +18,19 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let absences of absense"> -->
-      <td></td>
-
+      <tr *ngFor="let absence of absences">
+      <td>{{absence.dateDebut}}</td>
+      <td>{{absence.dateFin}}</td>
+      <td>{{absence.absenceType}}</td>
+      <td>{{absence.requestStatus}}</td>
+      <td>
+        <button *ngIf="absence.requestStatus=='INITIALE' || absence.requestStatus=='REJETEE'" class="btn btn-warning">Modifier</button>
+        <button class="btn btn-danger">Supprimer</button>
+        <button class="btn btn-primary">voir</button>
+      
+      </td>
+      </tr>
+     </tbody> 
   </table>
 
   <p class="text-right">Demander une absences
@@ -29,8 +39,8 @@
     </a>
   </p>
 
-  <p>Soldes des compteurs:</p>
-  <p>Congés payés:</p>
+  <p>Soldes des compteurs: {{user.congesPyesRestants}}</p>
+  <p>Congés payés: {{user.rttRestants}}</p>
 </div>
 
  
