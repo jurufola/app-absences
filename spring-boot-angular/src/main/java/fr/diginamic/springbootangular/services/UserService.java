@@ -34,6 +34,17 @@ public class UserService {
         }
     }
 
+    public User getUserByLoginPassword(String login, String password){
+        Optional<User> userGet = userRepository.findByLoginAndMotDePasse(login, password);
+        if(userGet.isPresent()){ // means a result has been found in database
+            return userGet.get();
+        }
+        else {
+            System.err.println("No user found with this login and password");
+            return null;
+        }
+    }
+
     /**
      * Add new user in database
      * @param newUser
