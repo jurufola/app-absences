@@ -1,25 +1,45 @@
-<div class="container m-4 p-3">
+<div class="container m-4 p-3 text-center">
 
     <h4 class="m-3 p-4">Visualiser jours fériés et RTT employeur</h4>
     <div class="m-3 p-2">
         Année
-        <input type="number" max="2200" min="1970" class="m-2" value="2017" />
+        <input type="number" max="2200" min="1970" class="m-3" value="2017" />
         <button type="submit" class="btn btn-outline-secondary p-1">Visualiser</button>
     </div>
-    <table class="table table-bordered table-striped table-condensed">
+    <table class="table table-bordered rounded">
         <thead>
             <th>Date</th>
             <th>Type</th>
             <th>Jour</th>
             <th>Commentaires</th>
+            <th>Actions</th>
+
         </thead>
         <tbody>
-            <tr *ngFor="let elt of closedDays">
-                <td>{{elt.id}}</td>
-                <td>{{elt.date}}</td>
-                <td>{{elt.Category}}</td>
+            <tr *ngFor="let closedDay of closedDays">
+                <td>{{closedDay.date}}</td>
+                <td>{{closedDay.category}}</td>
+                <td>{{closedDay.jour}}</td>
+                <td>{{closedDay.commentaires}}</td>
+                <td>
+                    <div *ngIf="getUserRoleAdmin();then block else notBlock"></div>
+
+                    <ng-template #block>
+                        <button type="submit" class="btn btn-primary p-1 float-right">+ Ajouter un RTT ou Jour Férié</button>
+                        <button type="submit" class="btn btn-primary p-1 float-right">+ Ajouter un RTT ou Jour Férié</button>
+                    </ng-template>
+                </td>
+
+                <ng-template #notBlock></ng-template>
+
+
+
             </tr>
         </tbody>
     </table>
+    <div class="float-right">
+        <button type="submit" class="btn btn-primary p-1 float-right">+ Ajouter un RTT ou Jour Férié</button>
+
+    </div>
 
 </div>
