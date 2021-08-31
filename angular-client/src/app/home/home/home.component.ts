@@ -1,6 +1,6 @@
-import { User } from 'src/app/Role';
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/models/Role';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +8,25 @@ import { Role } from 'src/app/models/Role';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  myUser="manager";
+  myUser: User;;
   connect=true;
+  myRole: Role;
+  role='manager';
 
+
+  myIdAndMyRole(){
+    let name= this.myUser.nom;
+    let firstName= this.myUser.prenom;
+    let role= this.myRole;
+    this.role=this.myRole.nomRole
+
+
+      }
 
   disconnect(){
     this.connect=!this.connect;
-    this.myUser='';
+
   }
-
-
-
-  constructor() { }
 
   ngOnInit(): void {
 
