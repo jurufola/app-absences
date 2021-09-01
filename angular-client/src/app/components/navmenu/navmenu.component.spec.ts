@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagerComponent } from './manager.component';
+import { NavmenuComponent } from './navmenu.component';
 
-describe('ManagerComponent', () => {
-  let component: ManagerComponent;
-  let fixture: ComponentFixture<ManagerComponent>;
+describe('NavmenuComponent', () => {
+  let component: NavmenuComponent;
+  let fixture: ComponentFixture<NavmenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManagerComponent ]
+      declarations: [ NavmenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManagerComponent);
+    fixture = TestBed.createComponent(NavmenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

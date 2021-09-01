@@ -14,31 +14,39 @@ export class ClosedDaysComponent implements OnInit {
   closedDays: ClosedDay;
   user:User;
 
-  constructor(private closedDaysService: ClosedDaysService, private authAdminService: AuthenticationService) { }
 
-  /**
-   * 
-   * @returns list of closedDays
-   */
-  ngOnInit() {
-    console.log('ok');
-    return this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
+
+  constructor(private closedDaysService: ClosedDaysService ) { }
+
+  ngOnInit(){
+    if(this.getAllDatas()){
+      return  this.closedDaysService.getDatas();
+    }
+    
+  }
+
+  getAllDatas():boolean {
+
+    this.closedDaysService.getDatas().subscribe((res:ClosedDay)=> {
       this.closedDays = res;
     });
-  }
-
-  /**
-   * 
-   */
-  addClosedDays(role:User){
-
-
-  }
-
-  getUserRoleAdmin(): boolean{
-  
+    if(this.closedDays !=null){
+      return true;
+    }
     return false;
   }
   
 
 }
+
+
+
+
+
+
+
+  
+
+  
+
+
