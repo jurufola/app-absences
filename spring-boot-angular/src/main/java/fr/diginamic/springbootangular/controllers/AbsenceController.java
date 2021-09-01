@@ -40,6 +40,8 @@ public class AbsenceController {
     public Absence getAbsenceById(@PathVariable("id") long id){
         return absenceService.getAbsenceById(id);
     }
+
+    @CrossOrigin
     @GetMapping("usersAbsences/{id}")
     public Set<Absence> getAbsencesByUserId(@PathVariable("id") long id){
         return absenceService.getAbsencesByUserId(id);
