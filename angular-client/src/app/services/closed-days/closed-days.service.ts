@@ -26,15 +26,7 @@ export class ClosedDaysService {
     return this.http.get<ClosedDay[]>(`${this.uri}/closed-days`);
   }
 
-  /**
-   * to return the role of the current user
-   * @param role 
-   * @returns 
-   */
-  getUserRole(role:User){
-    console.log('userRole');
-    return this.http.get<User>(`${this.uri}/user/${role}`); 
-  }
+  
 
   addClosedDays(Date, Type, Jour, Commentaires){
 
