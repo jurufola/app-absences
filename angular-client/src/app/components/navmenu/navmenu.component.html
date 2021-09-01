@@ -1,0 +1,57 @@
+<nav *ngIf="isLogged" class="navbar navbar-expand-md navbar-light bg-light ">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img class="fas fa-anchor text-warning fa-2x" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+  </nav>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse col-md-9" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['home']" >
+           <button type="button" class="btn btn-outline-dark">Accueil</button>
+        </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['gestion-absences']">
+          <button type="button" class="btn btn-outline-dark">Gestion des absences</button>
+        </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/planning-absences">
+          <button type="button" class="btn btn-outline-dark">Planning des absences</button>
+        </a>
+      </li>
+
+      <li *ngIf="" class="nav-item active" >
+        <a class="nav-link" href="/validation">
+           <button type="button" class="btn btn-outline-dark">Validation des absences</button>
+        </a>
+      </li>
+
+      <li *ngIf="" class="nav-item active">
+        <a class="nav-link" href="/vues-synthetiques">
+           <button type="button" class="btn btn-outline-dark">Vues synthetiques</button>
+        </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/jours-feriés">
+          <button type="button" class="btn btn-outline-dark">Jours feriés</button>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <div class="row">
+      <p >Bonjour {{currentUser.prenom}} {{currentUser.nom}}</p>
+      <a type="button" class="nav-link" (click)="authService.logout()">Se déconnecter</a>
+    </div>
+  </div>
+</nav>

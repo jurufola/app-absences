@@ -1,5 +1,6 @@
 package fr.diginamic.springbootangular.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,8 +21,9 @@ public class User {
     private int congesPayesRestants;
     private int rttRestants;
 
+    @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name="ROLE_ID")
+    @JoinColumn(name="ROLE_ID", referencedColumnName = "ID")
     private Role role;
 
     @JsonManagedReference
@@ -30,7 +32,7 @@ public class User {
 
     /* many to one relation between use entity and department entity on users
      */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="DEP_ID")
     private Department department;
 
