@@ -16,6 +16,10 @@ public class ClosedDay {
 
     public enum Category { JOUR_FERIE, RTT_EMPLOYEUR };
     private Category category;
+    public enum JourSemaine { LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE };
+    private JourSemaine jour;
+
+    private String commentaire;
 
     public ClosedDay() {
     }
@@ -47,6 +51,22 @@ public class ClosedDay {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public JourSemaine getJour() {
+        return jour;
+    }
+
+    public void setJour(JourSemaine jour) {
+        this.jour = jour;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     @Override

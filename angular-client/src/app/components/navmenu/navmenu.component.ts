@@ -10,8 +10,10 @@ import { User } from 'src/app/models/user';
 export class NavmenuComponent implements OnInit {
 
   currentUser: User;
+  isLogged: boolean;
   constructor(public authService: AuthenticationService) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
+    this.authService.isLoggedIn.subscribe(x => this.isLogged = x);
    }
 
   ngOnInit(): void {

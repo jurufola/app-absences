@@ -1,4 +1,4 @@
-<nav *ngIf="currentUser" class="navbar navbar-expand-md navbar-light bg-light ">
+<nav *ngIf="isLogged" class="navbar navbar-expand-md navbar-light bg-light ">
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img class="fas fa-anchor text-warning fa-2x" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -17,7 +17,7 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="/gestion-absences">
+        <a class="nav-link" [routerLink]="['gestion-absences']">
           <button type="button" class="btn btn-outline-dark">Gestion des absences</button>
         </a>
       </li>
@@ -49,8 +49,7 @@
   </div>
 
   <div class="col-md-3">
-    <p class="row" *ngIf="!currentUser">Non connecté</p>
-    <div class="row" *ngIf="currentUser">
+    <div class="row">
       <p >Bonjour {{currentUser.prenom}} {{currentUser.nom}}</p>
       <a type="button" class="nav-link" (click)="authService.logout()">Se déconnecter</a>
     </div>
