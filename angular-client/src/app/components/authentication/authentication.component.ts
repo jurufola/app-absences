@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { stdout } from 'process';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
@@ -12,8 +13,9 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
-  isSubmitted = false;
-  user: User = null;
+
+  invalidLogin = false;
+  loginSuccess = false;
 
 
   constructor(private authService: AuthenticationService,
@@ -22,49 +24,25 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      login: ['', [ Validators.required ]],
-      password: ['', [Validators.required, Validators.minLength(6)]] // least than 6 caracters
+      login: ['', [ Validators.required]],
+      password: ['', [Validators.required]]
     });
-    console.log(this.loginForm);
   }
 
-  get formControls(){ return this.loginForm.controls;}
-
-  login(){
-
-    console.log('login');
-  
-    if(this.checkLogin()){
-     
-     this.isSubmitted = true;
-     this.loginForm.get('login').value;
-     console.log('connection reussie');
-     //this.router.navigateByUrl('/user');
-      
-   }else{
-     this.loginForm.invalid;
-     return false;
-   }
-
-      //this.authService.toLogin(this.loginForm.value); // for authentication
-     
-    }  
-
-    
-    checkLogin():boolean{
-      console.log('login: ' + this.loginForm.get('login').value);
-
-     this.authService.getUser(this.loginForm.get('login').value).subscribe((res:User)=>{
-       this.user = res;
-     });
-     //console.log(this.user.login);
-     if(this.user != null){
-       if((this.loginForm.get('password').value).isEquals(this.user.motDePasse)){
-         return true ;
-       }
-     }
-      return false;
+  handleLogin(){
+    let loginAttempt = this.authService.login(this.loginForm.get('login').value, this.loginForm.get('password').value);
+    if(loginAttempt){
+      this.loginSuccess = true;
+      this.invalidLogin = false;
+      console.log("Login sucess !");
+      this.router.navigateByUrl('/home')
     }
-    
+    else {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+      console.log("Login failed !");
+    }
   }
- 
+
+}
+

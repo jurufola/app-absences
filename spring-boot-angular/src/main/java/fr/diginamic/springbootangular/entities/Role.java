@@ -1,5 +1,8 @@
 package fr.diginamic.springbootangular.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +15,7 @@ public class Role {
 
     private String nomRole;
     // one to many relation between Role entity and user entity
+    @JsonBackReference
     @OneToMany(mappedBy="role")
     private Set<User> users;
 
