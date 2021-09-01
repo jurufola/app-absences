@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
   selector: 'app-closed-days-add',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ClosedDaysAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private as:ClosedDaysService) {
     this.createForm();
    }
 
@@ -21,6 +22,15 @@ export class ClosedDaysAddComponent implements OnInit {
       Commentaires: ['', Validators.required]
      });
    }
+
+   addClosedDay(Date, Type, Jour, Commentaires){
+     this.as.addNewClosedDay(Date, Type, Jour, Commentaires);
+   }
+
+   /*addClosedDay(){
+     this.as.addNewClosedDay(this.angForm);
+   }*/
+
 
   ngOnInit(): void {
   }

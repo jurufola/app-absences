@@ -7,4 +7,11 @@ export class ClosedDay {
   category: Category;
   jour: JourSemaine;
   commentaire: string;
+
+  constructor(id:number, date:Date, category:Category, jour: JourSemaine, commentaire: string){
+    this.id = id;
+    this.category = category;
+    this.jour = jour;
+    this.commentaire = commentaire;
+  }
 }
