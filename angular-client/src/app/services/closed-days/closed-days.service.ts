@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClosedDay } from 'src/app/models/closed-day';
-import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,20 +21,9 @@ export class ClosedDaysService {
   */
   getDatas():Observable <ClosedDay[]>  {
     
-    console.log('holidays');
+    //console.log('holidays');
     return this.http.get<ClosedDay[]>(`${this.uri}/closed-days`);
   }
 
   
-
-  addClosedDays(Date, Type, Jour, Commentaires){
-
-    const obj = {
-      Date, Type, Jour, Commentaires
-    };
-    console.log(obj);
-    this.http.post(`${ this.uri }`, obj).subscribe(res=> console.log('Done'));
-
-  }
-
 }
