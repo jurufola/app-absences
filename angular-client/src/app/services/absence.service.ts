@@ -18,7 +18,7 @@ export class AbsenceService {
     const absence = new Absence(0, (myForm.value.type),
       new Date(myForm.value.dates.startDate), new Date(myForm.value.dates.endDate),
       myForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6));
-    this._http.post(`${this.uri}absences`, absence, { responseType: 'text' }).subscribe((data: any) => {
+    this._http.post(`${this.uri}/absences`, absence, { responseType: 'text' }).subscribe((data: any) => {
       console.log(`réponse => ${data}`);
       console.log("type réponse => " + typeof data);
       if (data.includes("prise en compte")) {
