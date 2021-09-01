@@ -1,5 +1,5 @@
 <div class="container border-rounded p-4 m-3">
-    >>>>>>> enyon-dev
+
 
     <h5 class="text-center m-3 p-2">Jours fériés et RTT employeurs</h5>
 
@@ -18,11 +18,10 @@
 
         </thead>
         <tbody>
-            <tr *ngFor="let closedDay of closedDays">
-                <td>{{closedDay.date}}</td>
-                <td>{{closedDay.category}}</td>
-                <td>{{closedDay.jour}}</td>
-                <td>{{closedDay.commentaires}}</td>
+            <tr *ngFor="let elt of holidays">
+                <td>{{elt.date}}</td>
+                <td>{{elt.category}}</td>
+
                 <td>
                     <div *ngIf="getUserRoleAdmin();then block else notBlock"></div>
 

@@ -10,7 +10,7 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 })
 export class ClosedDaysComponent implements OnInit {
 
-  closedDays: ClosedDay;
+  holidays: ClosedDay;
   user:User;
 
 
@@ -27,13 +27,14 @@ export class ClosedDaysComponent implements OnInit {
   getAllDatas():boolean {
 
     this.closedDaysService.getDatas().subscribe((res:ClosedDay)=> {
-      this.closedDays = res;
+      this.holidays = res;
     });
-    if(this.closedDays !=null){
+    if(this.holidays !=null){
       return true;
     }
     return false;
   }
+
   
 
 }

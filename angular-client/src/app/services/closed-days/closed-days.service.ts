@@ -18,17 +18,10 @@ export class ClosedDaysService {
  
   getDatas():Observable <ClosedDay>  {
     
-    //console.log('holidays');
+    console.log('holidays');
     return this.http.get<ClosedDay>(`${this.uri}/closed-days/}`);
   }
 
   
-
-
-
-  getClosedDays(): Observable <ClosedDay> {
-    
-    return this.http.get<ClosedDay>(` ${this.uri}/closed-days`);
-  }
 
 }
