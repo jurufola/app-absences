@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClosedDay } from 'src/app/models/closed-day';
 import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
@@ -10,43 +11,54 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 })
 export class ClosedDaysComponent implements OnInit {
 
-  holidays: ClosedDay;
+  holidays: ClosedDay[];
   user:User;
 
 
 
-  constructor(private closedDaysService: ClosedDaysService ) { }
+
+  constructor(private closedDaysService: ClosedDaysService) { }
 
   ngOnInit(){
-    if(this.getAllDatas()){
-      return  this.closedDaysService.getDatas();
-    }
+  
+      return this.getAllDatas();
+    
     
   }
+/**
+ * to view the all holidays 
+ * @returns holidays
+ */
+  getAllDatas(){
 
-  getAllDatas():boolean {
-
-    this.closedDaysService.getDatas().subscribe((res:ClosedDay)=> {
+    this.closedDaysService.getDatas().subscribe((res:ClosedDay[])=> {
       this.holidays = res;
+      res.forEach(element => {
+        console.log(element);
+      });
     });
-    if(this.holidays !=null){
-      return true;
-    }
-    return false;
-  }
-
+    
+   
   
+  }
+/**
+ * to view crud action if the user is admin
+ * @returns actions
+ */
+  getAdminAction(): boolean{
+     this.closedDaysService.getUserRole(this.user).subscribe((res:User)=> {
+       this.user = res;
+    });
+    if((this.user.role.nomRole === 'admin')){
+        return true;
+    }
+
+    return false
+  
+  }
 
 }
 
 
-
-
-
-
-
-  
-
-  
 
 

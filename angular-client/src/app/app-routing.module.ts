@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { ClosedDaysComponent } from './components/closed-days/closed-days.component';
-import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Routes = [
 
