@@ -2,7 +2,6 @@ import { AbsenceService } from './../../services/absence.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Absence, Type } from 'src/app/models/absence';
 
 @Component({
