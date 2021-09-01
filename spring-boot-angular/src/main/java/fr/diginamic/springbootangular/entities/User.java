@@ -1,5 +1,7 @@
 package fr.diginamic.springbootangular.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,8 +24,8 @@ public class User {
     @JoinColumn(name="ROLE_ID")
     private Role role;
 
-
-    @OneToMany(mappedBy="user")
+    @JsonManagedReference
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
     private Set<Absence> absences;
 
     /* many to one relation between use entity and department entity on users

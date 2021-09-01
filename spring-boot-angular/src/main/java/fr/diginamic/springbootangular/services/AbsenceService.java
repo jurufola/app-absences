@@ -82,4 +82,8 @@ public class AbsenceService {
     public void deleteAbsence(long id){
         absenceRepository.deleteById(id);
     }
+
+    public List<Absence> getAbsencesByUserId(long userId) {
+        return absenceRepository.findAllByUserId(userId);
+    }
 }

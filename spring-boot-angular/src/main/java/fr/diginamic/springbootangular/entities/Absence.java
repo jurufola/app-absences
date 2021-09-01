@@ -1,4 +1,7 @@
 package fr.diginamic.springbootangular.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,6 +23,7 @@ public class Absence {
     private Status requestStatus;
 
     // many to one relation between absence entity and user entity
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="USER_ID")
     private User user;

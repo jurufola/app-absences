@@ -29,6 +29,10 @@ public class AbsenceController {
     public Absence getAbsenceById(@PathVariable("id") long id){
         return absenceService.getAbsenceById(id);
     }
+    @GetMapping("usersAbsences/{id}")
+    public List<Absence> getAbsencesByUserId(@PathVariable("id") long id){
+        return absenceService.getAbsencesByUserId(id);
+    }
 
     @PostMapping("absences")
     public String createAbsence(@RequestBody Absence absence){
