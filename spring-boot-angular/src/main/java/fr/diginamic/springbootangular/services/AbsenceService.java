@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AbsenceService {
@@ -21,6 +22,11 @@ public class AbsenceService {
     public List<Absence> absences(){
         return absenceRepository.findAll();
     }
+    /*public String addAbsence(Absence newAbsence) {
+        return absenceRepository.save(newAbsence)!=null ? "Nouvelle abscence " + newAbsence + " rajoutée à la base  " :
+                "Error de rajout";
+
+    }*/
 
     public Absence getAbsenceById(Long id){
         Optional<Absence> absenceGet = absenceRepository.findById(id);
@@ -77,4 +83,9 @@ public class AbsenceService {
     public void deleteAbsence(long id){
         absenceRepository.deleteById(id);
     }
+
+    public Set<Absence> getAbsencesByUserId(long userId) {
+        return absenceRepository.findAllByUserId(userId);
+    }
+
 }
