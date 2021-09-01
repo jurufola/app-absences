@@ -1,12 +1,15 @@
 package fr.diginamic.springbootangular.controllers;
 
 import fr.diginamic.springbootangular.entities.Absence;
+import fr.diginamic.springbootangular.entities.ClosedDay;
 import fr.diginamic.springbootangular.entities.User;
 import fr.diginamic.springbootangular.services.AbsenceService;
+import fr.diginamic.springbootangular.services.ClosedDayService;
 import fr.diginamic.springbootangular.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -18,6 +21,9 @@ public class AbsenceController {
     AbsenceService absenceService;
     @Autowired
     UserService userService;
+
+    @Autowired
+    ClosedDayService closedDayService;
 
     /*@PostMapping("absence")
     public String addAbsence(@RequestBody Absence absence) {
@@ -41,12 +47,23 @@ public class AbsenceController {
     @PostMapping("absences")
     public String createAbsence(@RequestBody Absence absence){
         // Overlapping test
-        System.out.println("Absence => " + absence);
-        System.out.println(datesOverlapping(absence));
+        //System.out.println("Absence => " + absence);
+        //System.out.println(datesOverlapping(absence));
         if(datesOverlapping(absence)) {
-            System.out.println("JE suis dans le if datesOverlapping(absence)");
+            //System.out.println("JE suis dans le if datesOverlapping(absence)");
             return "Votre demande d'absence chévauche une autre demande. Merci de Changer les dates";
         }
+
+        // Closed Day test
+        System.out.println(isClosedDay(absence.getDateDebut()));
+        if(isClosedDay(absence.getDateDebut())) {
+            return "La date de début tombe sur un jour férié ou un Rtt employeur";
+        }
+        if(isClosedDay(absence.getDateFin())) {
+            return "La date de fin tombe sur un jour férié ou un Rtt employeur";
+        }
+
+        // week-end test
 
         absenceService.addAbsence(absence);
         return "Votre demande d'abscence a bien été prise en compte";
@@ -71,17 +88,17 @@ public class AbsenceController {
      * @return
      */
     public boolean datesOverlapping(Absence absence) {
-        System.out.println("debut datesOverlapping");
+        //System.out.println("debut datesOverlapping");
 
         long userId = absence.getUser().getId();
         User user = this.userService.getUserByLogin(absence.getUser().getLogin());
-        System.out.println("User Id  => " + userId);
-        System.out.println("User => " + user);
+        //System.out.println("User Id  => " + userId);
+        //System.out.println("User => " + user);
         Set<Absence> userAbsences = user.getAbsences();
-        System.out.println(userAbsences.size());
+        //System.out.println(userAbsences.size());
 
         for (Absence userAbsence : userAbsences) {
-            System.out.println("Boucle absences user");
+           // System.out.println("Boucle absences user");
            /* if(absence.getDateDebut().compareTo(userAbsence.getDateDebut())>=0 && absence.getDateDebut().compareTo
            (userAbsence.getDateFin())<=0) {
                 return true;
@@ -116,6 +133,24 @@ public class AbsenceController {
                 return true;
             }
         }
+        return false;
+    }
+
+    /**
+     * check if a date is a closed Day
+     * @param date
+     * @return
+     */
+    public boolean isClosedDay(LocalDate date) {
+        List<ClosedDay> closedDays = closedDayService.closedDays();
+        System.out.println("Nombre de closed days => " + closedDays.size());
+        for (ClosedDay closedDay : closedDays) {
+            System.out.println(closedDay);
+            System.out.println("closed Day => " + closedDay);
+            System.out.println("date => " + date);
+            return date.isEqual(closedDay.getDate());
+        }
+
         return false;
     }
 
