@@ -1,3 +1,4 @@
+import { GestionAbsencesService } from './services/gestion-absences.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,7 @@ import { AuthenticationService } from './services/authentication/authentication.
 import { ClosedDaysAddComponent } from './components/closed-days/closed-days-add/closed-days-add.component';
 import { ClosedDaysEditComponent } from './components/closed-days/closed-days-edit/closed-days-edit.component';
 import { ClosedDaysDeleteComponent } from './components/closed-days/closed-days-delete/closed-days-delete.component';
+import { GestionAbsenceComponent } from './components/gestion-absence/gestion-absence.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ClosedDaysDeleteComponent } from './components/closed-days/closed-days-
     NavmenuComponent,
     ClosedDaysAddComponent,
     ClosedDaysEditComponent,
-    ClosedDaysDeleteComponent
+    ClosedDaysDeleteComponent,
+    GestionAbsenceComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { ClosedDaysDeleteComponent } from './components/closed-days/closed-days-
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, GestionAbsencesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

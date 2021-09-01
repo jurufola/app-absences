@@ -1,3 +1,4 @@
+import { GestionAbsenceComponent } from './components/gestion-absence/gestion-absence.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
@@ -5,6 +6,8 @@ import { ClosedDaysAddComponent } from './components/closed-days/closed-days-add
 import { ClosedDaysDeleteComponent } from './components/closed-days/closed-days-delete/closed-days-delete.component';
 import { ClosedDaysEditComponent } from './components/closed-days/closed-days-edit/closed-days-edit.component';
 import { ClosedDaysComponent } from './components/closed-days/closed-days.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Routes = [
 
@@ -19,6 +22,8 @@ const routes: Routes = [
 
   
 
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'gestion-absences', component: GestionAbsenceComponent, canActivate: [AuthenticationGuard] }
 
 ];
 
