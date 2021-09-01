@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AbsenceService {
@@ -83,7 +84,8 @@ public class AbsenceService {
         absenceRepository.deleteById(id);
     }
 
-    public List<Absence> getAbsencesByUserId(long userId) {
+    public Set<Absence> getAbsencesByUserId(long userId) {
         return absenceRepository.findAllByUserId(userId);
     }
+
 }

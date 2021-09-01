@@ -18,14 +18,21 @@ export class AbsenceService {
     const absence = new Absence(0, (myForm.value.type),
       new Date(myForm.value.dates.startDate), new Date(myForm.value.dates.endDate),
       myForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6));
-    this._http.post(`${this.uri}absences`, absence, {responseType: 'text'}).subscribe((data: any) => {
+    this._http.post(`${this.uri}absences`, absence, { responseType: 'text' }).subscribe((data: any) => {
       console.log(`réponse => ${data}`);
       console.log("type réponse => " + typeof data);
-      this._flashMessagesService.show(data, { cssClass: 'alert-success', timeout: 3000 });
-      myForm.reset();
+      if (data.includes("prise en compte")) {
+        this._flashMessagesService.show(data, { cssClass: 'alert-success', timeout: 5000 });
+        myForm.reset();
+      }else {
+        this._flashMessagesService.show(data, { cssClass: 'alert-warning', timeout: 5000 });
+      }
+
+
+
     }, (error: HttpErrorResponse) => {
       console.log(`erreur => ${error.message}`);
-      this._flashMessagesService.show(error.message, { cssClass: 'alert-danger', timeout: 3000 });
+      this._flashMessagesService.show(error.message, { cssClass: 'alert-danger', timeout: 5000 });
 
     });
   }
