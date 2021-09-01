@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="card p-3 m-3">
+        <div class="card-body ">
+            <h4 class="card-title text-center m-3 p-2"> Ajouter un jour férié ou RTT employeur</h4>
+            <form [formGroup]="angForm">
+                <div class="form-group">
+                    <label class="col-md-4 m-2">Date</label>
+                    <input type="date" class="col-md-3 form-control" formControlName="Date" #Date/>
+                </div>
+                <div *ngIf="angForm.controls['Date'].invalid && (angForm.controls['Date'].dirty || angForm.controls['Date'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Date'].errors.required">
+                        La valeur de la date est obligatoire
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 m-2">Type</label>
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Type" #Type>
+                        <option value="0"> JOUR_FERIE</option>
+                        <option value="1">RTT_EMPLOYEUR</option>
+                   
+                    </select>
+                </div>
+                <div *ngIf="angForm.controls['Type'].invalid && (angForm.controls['Type'].dirty || angForm.controls['Type'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Type'].errors.required">
+                        Le valeur du Type est obligatoire
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 m-2">Jour</label>
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Jour" #Jour>
+                        <option value="0">Lundi</option>
+                        <option value="1">Mardi</option>
+                        <option value="2">Mercredi</option>
+                        <option value="3">Jeudi</option>
+                        <option value="4">Vendredi</option>
+                        <option value="5">Samedi</option>
+                        <option value="6">Dimanche</option>
+                   
+                    </select>
+                </div>
+                <div *ngIf="angForm.controls['Jour'].invalid && (angForm.controls['Jour'].dirty || angForm.controls['Jour'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Jour'].errors.required">
+                        Le valeur du Jour est obligatoire
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    <label class="col-md-4 m-2">Commentaires </label>
+                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaires" #Commentaires></textarea>
+                </div>
+                <div *ngIf="angForm.controls['Commentaires'].invalid && (angForm.controls['Commentaires'].dirty || angForm.controls['Commentaires'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Commentaires'].errors.required">
+                        Le commentaire est obligatoire
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaires.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

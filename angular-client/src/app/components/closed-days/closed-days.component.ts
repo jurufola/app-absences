@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { Observable } from 'rxjs';
-=======
->>>>>>> enyon-closed-days
 import { ClosedDay } from 'src/app/models/closed-day';
+import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
@@ -13,50 +11,57 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 })
 export class ClosedDaysComponent implements OnInit {
 
-<<<<<<< HEAD
-holidays:ClosedDay = null;
+  holidays: ClosedDay[];
+  user:User;
 
 
-  constructor(private closedDaysService: ClosedDaysService ) { }
+
+
+  constructor(private closedDaysService: ClosedDaysService, private authService: AuthenticationService) {
+
+
+   }
 
   ngOnInit(){
-    if(this.getAllDatas()){
-      return  this.closedDaysService.getDatas();
-    }
+  
+    this.user = this.authService.currentUserValue;
+    
+
+    this.getAllDatas();
+ 
+
+    
+    
+  }
+/**
+ * to view the all holidays 
+ * @returns holidays
+ */
+  getAllDatas(){
+
+    this.closedDaysService.getDatas().subscribe((res:ClosedDay[])=> {
+      this.holidays = res;
+      res.forEach(element => {
+        console.log(element);
+      });
+      console.log(this.holidays.length);
+    });
+
+
     
   }
 
-  getAllDatas():boolean {
+  isUserAdmin(): boolean {
 
-    this.closedDaysService.getDatas().subscribe((res:ClosedDay)=> {
-      this.holidays = res;
-    });
-    if(this.holidays !=null){
+    if(this.user.role.nomRole === 'Admin'){
       return true;
     }
     return false;
   }
 
-=======
-  closedDays: ClosedDay = null;
 
-  constructor(private closedDaysService: ClosedDaysService) { }
-
-  ngOnInit() {
-    console.log('ok');
-    return this.closedDaysService.getClosedDays().subscribe((res:ClosedDay) => {
-      this.closedDays = res;
-    });
->>>>>>> enyon-closed-days
-  }
+}
 
 
 
-
-
-
-
-  
-
-  
 

@@ -1,9 +1,10 @@
-export enum Category { JOUR_FERIE, RTT_EMPLOYEUR };
-export enum JourSemaine { LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE }
+enum Category { JOUR_FERIE, RTT_EMPLOYEUR };
+enum JourSemaine { LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE };
+
+
 export class ClosedDay {
-  id: number;
-  date: Date;
-  category: Category;
-  jour: JourSemaine;
-  commentaire: string;
+  constructor(public id:number, public date:Date, public category:Category, public jour: JourSemaine, public commentaire: string){
+
+  }
+
 }
