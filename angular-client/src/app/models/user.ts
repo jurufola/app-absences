@@ -1,6 +1,15 @@
+import { Department } from './department';
+import { Absence } from './absence';
+import { Role } from './role';
 export class User {
-
-  constructor(public id: number, public login: string, public motDePasse: string, public nom: string, public prenom: string, public congesPayesRestants: number, public rttRestants: number ){
-
-  }
+  id: number;
+  login: string;
+  motDePasse: string;
+  nom: string;
+  prenom: string;
+  congesPyesRestants: number;
+  rttRestants: number;
+  role: Role;
+  absences: Absence[];
+  department: Department;
 }
