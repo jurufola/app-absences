@@ -2,10 +2,10 @@
     <div class="card p-3 m-3">
         <div class="card-body ">
             <h4 class="card-title text-center m-3 p-2"> Ajouter un jour férié ou RTT employeur</h4>
-            <form [formGroup]="angForm" novalidate>
+            <form [formGroup]="angForm">
                 <div class="form-group">
                     <label class="col-md-4 m-2">Date</label>
-                    <input type="date" class="col-md-3" formControlName="Date" #Date/>
+                    <input type="date" class="col-md-3 form-control" formControlName="Date" #Date/>
                 </div>
                 <div *ngIf="angForm.controls['Date'].invalid && (angForm.controls['Date'].dirty || angForm.controls['Date'].touched)" class="alert alert-danger">
                     <div *ngIf="angForm.controls['Date'].errors.required">
@@ -14,9 +14,9 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 m-2">Type</label>
-                    <select name="type" id="type" class="col-md-3" formControlName="Type" #Type>
-                        <option value=""> JOUR_FERIE</option>
-                        <option value="">RTT_EMPLOYEUR</option>
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Type" #Type>
+                        <option value="0"> JOUR_FERIE</option>
+                        <option value="1">RTT_EMPLOYEUR</option>
                    
                     </select>
                 </div>
@@ -27,14 +27,14 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 m-2">Jour</label>
-                    <select name="type" id="type" class="col-md-3" formControlName="Jour" #Jour>
-                        <option value="">LUNDI</option>
-                        <option value="">MARDI</option>
-                        <option value="">MERCREDI</option>
-                        <option value="">JEUDI</option>
-                        <option value="">VENDREDI</option>
-                        <option value="">SAMEDI</option>
-                        <option value="">DIMANCHE</option>
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Jour" #Jour>
+                        <option value="0">Lundi</option>
+                        <option value="1">Mardi</option>
+                        <option value="2">Mercredi</option>
+                        <option value="3">Jeudi</option>
+                        <option value="4">Vendredi</option>
+                        <option value="5">Samedi</option>
+                        <option value="6">Dimanche</option>
                    
                     </select>
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group m-3">
                     <label class="col-md-4 m-2">Commentaires </label>
-                    <textarea class="col-md-3" rows=7 cols="6" formControlName="Commentaires" #Commentaires></textarea>
+                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaires" #Commentaires></textarea>
                 </div>
                 <div *ngIf="angForm.controls['Commentaires'].invalid && (angForm.controls['Commentaires'].dirty || angForm.controls['Commentaires'].touched)" class="alert alert-danger">
                     <div *ngIf="angForm.controls['Commentaires'].errors.required">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Ajouter JF/RTT </button>
+                    <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaires.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
                 </div>
             </form>
         </div>
