@@ -55,7 +55,7 @@ public class AbsenceController {
             return "Votre demande d'absence chévauche une autre demande. Merci de Changer les dates";
         }
 
-        // Closed Day test
+        // Closed Day check
         System.out.println(isClosedDay(absence.getDateDebut()));
         if(isClosedDay(absence.getDateDebut())) {
             return "La date de début tombe sur un jour férié ou un Rtt employeur";
@@ -64,7 +64,7 @@ public class AbsenceController {
             return "La date de fin tombe sur un jour férié ou un Rtt employeur";
         }
 
-        // week-end test
+        // week-end check
 
         if (isAWeekDay(absence.getDateDebut())) {
             return "La date de début ne peut être un jour de week-end";
@@ -72,7 +72,10 @@ public class AbsenceController {
         if (isAWeekDay(absence.getDateFin())) {
             return "La date de fin ne peut être un jour de week-end";
         }
-
+        // passed dates check
+        if (inThePast(absence.getDateDebut()) || inThePast(absence.getDateFin())) {
+            return "On ne peut poser une demande dans le passé!";
+        }
         absenceService.addAbsence(absence);
         return "Votre demande d'abscence a bien été prise en compte";
     }
@@ -172,6 +175,14 @@ public class AbsenceController {
         return day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY;
     }
 
+    /**
+     * Check is a date is in the past
+     * @param date
+     * @return
+     */
+   public boolean inThePast(LocalDate date) {
 
+        return date.isBefore(LocalDate.now());
+   }
 
 }
