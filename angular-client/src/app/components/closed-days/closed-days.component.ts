@@ -23,18 +23,18 @@ export class ClosedDaysComponent implements OnInit {
    }
 
   ngOnInit(){
-  
+
     this.user = this.authService.currentUserValue;
-    
+
 
     this.getAllDatas();
- 
 
-    
-    
+
+
+
   }
 /**
- * to view the all holidays 
+ * to view the all holidays
  * @returns holidays
  */
   getAllDatas(){
@@ -48,7 +48,7 @@ export class ClosedDaysComponent implements OnInit {
     });
 
 
-    
+
   }
 
   isUserAdmin(): boolean {
