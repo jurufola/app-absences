@@ -14,14 +14,10 @@ const routes: Routes = [
 
   { path: '', pathMatch: 'full', redirectTo: 'authentication'}, // redirection all to th
   { path: 'authentication', component: AuthenticationComponent }, // path for authentication
-  { path: 'closeddays', component: ClosedDaysComponent }, // path for closedDays
-  { path: 'closeddays/add', component: ClosedDaysAddComponent }, // path for add closedDays
-  { path: 'closeddays/edit', component: ClosedDaysEditComponent }, // path for update closedDays
-  { path: 'closeddays/delete', component: ClosedDaysDeleteComponent }, // path for closedDays
-
-
-
-  
+  { path: 'closed-days', component: ClosedDaysComponent, canActivate: [AuthenticationGuard] }, // path for closedDays
+  { path: 'closed-days/add', component: ClosedDaysAddComponent, canActivate: [AuthenticationGuard] }, // path for add closedDays
+  { path: 'closed-days/edit', component: ClosedDaysEditComponent, canActivate: [AuthenticationGuard] }, // path for update closedDays
+  { path: 'closed-days/delete', component: ClosedDaysDeleteComponent, canActivate: [AuthenticationGuard] }, // path for closedDays
 
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'gestion-absences', component: GestionAbsenceComponent, canActivate: [AuthenticationGuard] },
