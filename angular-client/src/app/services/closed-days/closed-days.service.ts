@@ -36,4 +36,14 @@ export class ClosedDaysService {
     return this.http.get<User>(`${this.uri}/user/${role}`); 
   }
 
+  addClosedDays(Date, Type, Jour, Commentaires){
+
+    const obj = {
+      Date, Type, Jour, Commentaires
+    };
+    console.log(obj);
+    this.http.post(`${ this.uri }`, obj).subscribe(res=> console.log('Done'));
+
+  }
+
 }

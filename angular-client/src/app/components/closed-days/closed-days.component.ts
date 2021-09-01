@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClosedDay } from 'src/app/models/closed-day';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
