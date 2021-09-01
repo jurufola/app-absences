@@ -15,12 +15,14 @@ export class AuthenticationComponent implements OnInit {
   loginForm: FormGroup;
 
   invalidLogin = false;
-  loginSuccess = false;
+  loginSuccess: boolean;
 
 
   constructor(private authService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router) {
+      authService.isLoggedIn.subscribe(x => this.loginSuccess = x);
+     }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -30,16 +32,13 @@ export class AuthenticationComponent implements OnInit {
   }
 
   handleLogin(){
-    let loginAttempt = this.authService.login(this.loginForm.get('login').value, this.loginForm.get('password').value);
-    if(loginAttempt){
-      this.loginSuccess = true;
+    this.authService.login(this.loginForm.get('login').value, this.loginForm.get('password').value);
+
+    if(this.loginSuccess){
       this.invalidLogin = false;
-      console.log("Login sucess !");
-      this.router.navigateByUrl('/home')
     }
     else {
       this.invalidLogin = true;
-      this.loginSuccess = false;
       console.log("Login failed !");
     }
   }

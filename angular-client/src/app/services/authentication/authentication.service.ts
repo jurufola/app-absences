@@ -17,15 +17,26 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
+  private isLoggedInSubject: BehaviorSubject<boolean>;
+  public isLoggedIn: Observable<boolean>;
+
   constructor(private http:HttpClient, private router: Router) {
       // Init currentUser Subject/Observable
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       this.currentUser = this.currentUserSubject.asObservable();
+
+      // Init isLoggedIn Subject/Observable
+      this.isLoggedInSubject = new BehaviorSubject<boolean>(false);
+      this.isLoggedIn = this.isLoggedInSubject.asObservable();
   }
 
   /** Use this to access current logged in user from outside */
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  public get isLoggedValue(): boolean {
+    return this.isLoggedInSubject.value;
   }
 
   /**
@@ -34,20 +45,18 @@ export class AuthenticationService {
    * @param password
    * @returns
    */
-  public login(username: string, password: string): boolean{
+  public login(username: string, password: string){
+    let result = false;
     // We get the user in database corresponding to this username and this password
     this.getUserFromDB(username, password).subscribe((user)=>{
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(user);
+      this.isLoggedInSubject.next(true);
+      console.log("Login sucess !");
+      this.router.navigateByUrl('/home')
+    }, (error:any) => {
+      this.isLoggedInSubject.next(false);
     });
-
-    if(localStorage.getItem('currentUser') != null ){
-      return true;
-    }
-    else {
-      this.currentUserSubject.next(null);
-      return false;
-    }
   }
 
   /** Disconnect the current logged user and redirect to authentication page */
@@ -55,6 +64,7 @@ export class AuthenticationService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.isLoggedInSubject.next(null);
     this.router.navigateByUrl('/authentication')
 
   }
