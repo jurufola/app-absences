@@ -1,3 +1,4 @@
+import { FlashMessagesModule } from 'flash-messages-angular';
 import { GestionAbsencesService } from './services/gestion-absences.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,11 +8,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VacationRequestComponent } from './components/vacation-request/vacation-request.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AbsenceService } from './services/absence.service';
-import { FlashMessagesModule } from 'flash-messages-angular';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbsenceService } from './services/absence.service';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { ClosedDaysComponent } from './components/closed-days/closed-days.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavmenuComponent } from './components/navmenu/navmenu.component';
