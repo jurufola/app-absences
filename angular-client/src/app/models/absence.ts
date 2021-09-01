@@ -1,15 +1,9 @@
-import { User } from "./user";
-
-enum Type { PAYE,RTT,FERIE,SANS_SOLDE }
-enum Status { INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE }
-
+import { User } from './user';
+import { Status } from './status';
+import { Type } from './type';
 export class Absence {
-  id: number;
-  motif: string;
-  dateDebut: Date;
-  dateFin: Date;
-  absenceType: Type;
-  requestStatus: Status;
-  user: User;
 
+  constructor(public id: number, public absenceType: Type, public dateDebut: Date, public dateFin: Date, public motif: string,  public requestStatus: Status, public user: User) {
+
+  };
 }
