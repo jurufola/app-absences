@@ -9,6 +9,7 @@ import fr.diginamic.springbootangular.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +65,13 @@ public class AbsenceController {
         }
 
         // week-end test
+
+        if (isAWeekDay(absence.getDateDebut())) {
+            return "La date de début ne peut être un jour de week-end";
+        }
+        if (isAWeekDay(absence.getDateFin())) {
+            return "La date de fin ne peut être un jour de week-end";
+        }
 
         absenceService.addAbsence(absence);
         return "Votre demande d'abscence a bien été prise en compte";
@@ -152,6 +160,16 @@ public class AbsenceController {
         }
 
         return false;
+    }
+
+    /**
+     * Ceck if a date is saturday or sunday
+     * @param date
+     * @return
+     */
+    public boolean isAWeekDay(LocalDate date) {
+        DayOfWeek day = date.getDayOfWeek();
+        return day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY;
     }
 
 
