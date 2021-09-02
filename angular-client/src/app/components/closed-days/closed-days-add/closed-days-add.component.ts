@@ -33,6 +33,7 @@ export class ClosedDaysAddComponent implements OnInit {
     */
    addClosedDay(Date, Type, Jour, Commentaire){
      this.as.addNewClosedDay(Date, Type, Jour, Commentaire);
+     this.router.navigateByUrl('/closeddays');
    }
 
    /**

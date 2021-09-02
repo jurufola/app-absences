@@ -48,20 +48,31 @@ export class ClosedDaysService {
   }
 /**
  * 
- * @param id method to update the closedDays
+ * @param id method to edit the closedDays
  */
-  editClosedDays(id) {
+  editClosedDays(id):Observable <ClosedDay>{
 
-    return this.http.get(`${this.uri}/closed-days${id}`);
+    return this.http.get<ClosedDay>(`${this.uri}/closed-days/${id}`);
     
   }
+
 
   updateClosedDay(id,Date, Type, Jour, Commentaire){
     const closedDay = new ClosedDay(id, Date,Type,Jour, Commentaire);
 
-    return this.http.put<ClosedDay>(`${this.uri}/${id}`, closedDay).subscribe(res => {
+    return this.http.put<ClosedDay>(`${this.uri}/closed-days${id}`, closedDay).subscribe(res => {
       console.log(res);
     }) ;
   }
+/**
+ * get a closedDay and delete it in the database
+ * @param id 
+ */
+  deleteClosedDay(id): Observable <ClosedDay> {
+
+    return  this.http.get<ClosedDay>(`${this.uri}/closed-days/${id}`);
+
+  }
+
  
 }

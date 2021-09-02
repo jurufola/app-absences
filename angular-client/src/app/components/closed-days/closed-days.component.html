@@ -24,10 +24,10 @@
                 <td>{{elt.jour}}</td>
                 <td>{{elt.commentaire}}</td>
                 <div *ngIf="isUserAdmin()">
-
-                    <td><a href="/closeddays/edit/" class="btn btn-primary" routerLinkActive="active">Edit</a></td>
-                    <td><a href="/closeddays/delete" class="btn btn-danger">Delete</a>
-                </div>
+                    <td>
+                        <a href="/closeddays/edit/id" class="btn btn-primary" routerLinkActive="active">Edit</a>
+                    </td>
+                    <td><a (click)="deleteClosedDay(elt.id)" class="btn btn-danger">Delete</a> </div>
             </tr>
 
         </tbody>

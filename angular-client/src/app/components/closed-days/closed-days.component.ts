@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClosedDay } from 'src/app/models/closed-day';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
@@ -17,7 +18,7 @@ export class ClosedDaysComponent implements OnInit {
 
 
 
-  constructor(private closedDaysService: ClosedDaysService, private authService: AuthenticationService) {
+  constructor(private as:ClosedDaysService, private authService: AuthenticationService, private router:Router) {
 
 
    }
@@ -39,7 +40,7 @@ export class ClosedDaysComponent implements OnInit {
  */
   getAllDatas(){
 
-    this.closedDaysService.getDatas().subscribe((res:ClosedDay[])=> {
+    this.as.getDatas().subscribe((res:ClosedDay[])=> {
       this.holidays = res;
       res.forEach(element => {
         console.log(element);
@@ -59,6 +60,21 @@ export class ClosedDaysComponent implements OnInit {
     return false;
   }
 
+  /**
+   * Method to delete a closedDay
+   * @param id 
+   */
+  deleteClosedDay(id){
+
+    this.as.deleteClosedDay(id).subscribe(res=> {
+      this.holidays.pop();
+
+      console.log(this.holidays);
+      
+    })
+    alert('Voulez-vous bien supprimer cette RTT ou Jour férié? !');
+      this.router.navigateByUrl('/closeddays');
+  }
 
 }
 

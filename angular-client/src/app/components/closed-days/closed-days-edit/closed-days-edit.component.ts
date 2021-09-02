@@ -12,7 +12,8 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 export class ClosedDaysEditComponent implements OnInit {
 
   angForm: FormGroup;
-  closedDay: any;
+  closedDay: ClosedDay;
+
 
 
   constructor(private route:ActivatedRoute, private router:Router, private as:ClosedDaysService , private fb: FormBuilder) { 
@@ -58,7 +59,7 @@ export class ClosedDaysEditComponent implements OnInit {
   }
 
   /**
-   * Method to abort the angForm
+   * Method to cancel the angForm
    */
  cancelAddClosedDay(){
     this.router.navigateByUrl('/closeddays');

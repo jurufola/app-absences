@@ -14,8 +14,8 @@ import { NavmenuComponent } from './components/navmenu/navmenu.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { ClosedDaysAddComponent } from './components/closed-days/closed-days-add/closed-days-add.component';
 import { ClosedDaysEditComponent } from './components/closed-days/closed-days-edit/closed-days-edit.component';
-import { ClosedDaysDeleteComponent } from './components/closed-days/closed-days-delete/closed-days-delete.component';
 import { GestionAbsenceComponent } from './components/gestion-absence/gestion-absence.component';
+import { ClosedDaysService } from './services/closed-days/closed-days.service';
 
 @NgModule({
   declarations: [
@@ -26,13 +26,12 @@ import { GestionAbsenceComponent } from './components/gestion-absence/gestion-ab
     NavmenuComponent,
     ClosedDaysAddComponent,
     ClosedDaysEditComponent,
-    ClosedDaysDeleteComponent,
     GestionAbsenceComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule
   ],

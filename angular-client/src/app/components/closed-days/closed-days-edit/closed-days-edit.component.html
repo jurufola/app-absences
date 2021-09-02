@@ -5,7 +5,7 @@
             <form [formGroup]="angForm">
                 <div class="form-group">
                     <label class="col-md-4 m-2">Date</label>
-                    <input type="date" class="col-md-3 form-control" formControlName="Date" #Date [(ngModel)]="closedDay.Date" />
+                    <input type="date" class="col-md-3 form-control" formControlName="Date" #Date [(ngModel)]="closedDay.date" />
                 </div>
                 <div *ngIf="angForm.controls['Date'].invalid && (angForm.controls['Date'].dirty || angForm.controls['Date'].touched)" class="alert alert-danger">
                     <div *ngIf="angForm.controls['Date'].errors.required">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 m-2">Type</label>
-                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Type" #Type [(ngModel)]="closedDay.Type">
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Type" #Type [(ngModel)]="closedDay.category">
                         <option value="0"> JOUR_FERIE</option>
                         <option value="1">RTT_EMPLOYEUR</option>
                    
@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 m-2">Jour</label>
-                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Jour" #Jour [(ngModel)]="closedDay.Jour">
+                    <select name="type" id="type" class="col-md-3 form-control" formControlName="Jour" #Jour [(ngModel)]="closedDay.jour">
                         <option value="0">Lundi</option>
                         <option value="1">Mardi</option>
                         <option value="2">Mercredi</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group m-3">
                     <label class="col-md-4 m-2">Commentaire </label>
-                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaire" #Commentaire [(ngModel)]="closedDay.Commentaire"></textarea>
+                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaire" #Commentaire [(ngModel)]="closedDay.commentaire"></textarea>
                 </div>
                 <div *ngIf="angForm.controls['Commentaire'].invalid && (angForm.controls['Commentaire'].dirty || angForm.controls['Commentaire'].touched)" class="alert alert-danger">
                     <div *ngIf="angForm.controls['Commentaire'].errors.required">
