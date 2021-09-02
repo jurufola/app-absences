@@ -12,7 +12,7 @@ import { Absence, Type } from 'src/app/models/absence';
 export class ModificationAbsenceComponent implements OnInit {
   editForm: FormGroup;
   absence: Absence = null;
-  absenceEnumType = Type;
+  absenceEnumType: Type;
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
     private abs: AbsenceService) {
@@ -40,9 +40,15 @@ export class ModificationAbsenceComponent implements OnInit {
   updateAbsence(BeginDate, EndDate, AbsenceType, Motive) {
     this.route.params.subscribe(params => {
       this.abs.updateAbsence(BeginDate, EndDate, AbsenceType, Motive, params.id).subscribe((data) => {
-        this.router.navigate(['absences']);
+        //this.router.navigate(['absences']);
+        console.log("absence updated");
+
       });
     })
+  }
+
+  cancelUpdate(){
+    this.router.navigate(['absences']);
   }
 
 }

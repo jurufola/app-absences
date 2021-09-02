@@ -35,6 +35,6 @@ export class AbsenceService {
     };
     return this
       .http
-      .put<Absence>(`${this.absenceUrl}/${id}`, obj);
+      .put<Absence>(`${this.absenceUrl}/${id}`, obj, { responseType: 'json' });
   }
 }

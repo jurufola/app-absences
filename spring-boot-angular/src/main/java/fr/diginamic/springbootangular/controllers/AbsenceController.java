@@ -31,6 +31,7 @@ public class AbsenceController {
         return "Absence added successfully";
     }
 
+    @CrossOrigin
     @PutMapping("absences/{id}")
     public String updateAbsence(@PathVariable("id") long id, @RequestBody Absence absence){
         absenceService.updateAbsence(id, absence);
