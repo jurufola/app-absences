@@ -22,6 +22,21 @@ public class ClosedDayService {
     }
 
     /**
+     * Return a closed day from its id
+     * @param id
+     * @return
+     */
+    public ClosedDay getClosedDayById(Long id){
+        Optional<ClosedDay> closedDayGet = closedDayRepository.findById(id);
+        if(closedDayGet.isPresent()){
+            return closedDayGet.get();
+        }
+        else  {
+            System.err.println("No closed day found with this id");
+            return null;
+        }
+    }
+    /**
      * Return all closed days of the given category
      * @param category
      * @return

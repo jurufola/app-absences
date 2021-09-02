@@ -1,5 +1,6 @@
 package fr.diginamic.springbootangular.controllers;
 
+import fr.diginamic.springbootangular.entities.Absence;
 import fr.diginamic.springbootangular.entities.ClosedDay;
 import fr.diginamic.springbootangular.services.ClosedDayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class ClosedDayController {
     @GetMapping("closed-days")
     public List<ClosedDay> getAllClosedDays(){
         return closedDayService.closedDays();
+    }
+
+    @GetMapping("closed-days/{id}")
+    public ClosedDay getClosedDayById(@PathVariable("id") long id){
+        return closedDayService.getClosedDayById(id);
     }
 
     @PostMapping("closed-days")
