@@ -13,7 +13,7 @@
             <th>Date</th>
             <th>Type</th>
             <th>Jour</th>
-            <th>Commentaires</th>
+            <th>Commentaire</th>
             <th *ngIf="isUserAdmin()">Actions</th>
 
         </thead>
@@ -22,11 +22,11 @@
                 <td>{{elt.date}}</td>
                 <td>{{elt.category}}</td>
                 <td>{{elt.jour}}</td>
-                <td>{{elt.commentaires}}</td>
+                <td>{{elt.commentaire}}</td>
                 <div *ngIf="isUserAdmin()">
 
-                    <td><a [routerLink]="['/edit', elt.id]" class="btn btn-primary">Edit</a></td>
-                    <td><a (click)="deleteHoliday(elt.id)" class="btn btn-danger">Delete</a>
+                    <td><a href="/closeddays/edit/" class="btn btn-primary" routerLinkActive="active">Edit</a></td>
+                    <td><a href="/closeddays/delete" class="btn btn-danger">Delete</a>
                 </div>
             </tr>
 

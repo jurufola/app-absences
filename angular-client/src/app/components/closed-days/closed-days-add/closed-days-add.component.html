@@ -44,16 +44,17 @@
                     </div>
                 </div>
                 <div class="form-group m-3">
-                    <label class="col-md-4 m-2">Commentaires </label>
-                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaires" #Commentaires></textarea>
+                    <label class="col-md-4 m-2">Commentaire </label>
+                    <textarea class="col-md-3 form-control" rows=7 cols="6" formControlName="Commentaire" #Commentaire></textarea>
                 </div>
-                <div *ngIf="angForm.controls['Commentaires'].invalid && (angForm.controls['Commentaires'].dirty || angForm.controls['Commentaires'].touched)" class="alert alert-danger">
-                    <div *ngIf="angForm.controls['Commentaires'].errors.required">
+                <div *ngIf="angForm.controls['Commentaire'].invalid && (angForm.controls['Commentaire'].dirty || angForm.controls['Commentaire'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Commentaire'].errors.required">
                         Le commentaire est obligatoire
                     </div>
                 </div>
-                <div class="text-center">
-                    <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaires.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
+                <div class="text-center m-2">
+                    <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaire.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
+                    <button (click)="cancelAddClosedDay()" type="submit" class="btn btn-warning m-3">Annuler </button>
                 </div>
             </form>
         </div>

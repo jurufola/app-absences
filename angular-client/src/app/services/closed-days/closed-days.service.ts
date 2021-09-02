@@ -33,8 +33,8 @@ export class ClosedDaysService {
  * @param Jour 
  * @param Commentaires 
  */
-  addNewClosedDay(Date, Type, Jour, Commentaires){
-    const closedDay  = new ClosedDay(0, Date,Type,Jour, Commentaires);
+  addNewClosedDay(Date, Type, Jour, Commentaire){
+    const closedDay  = new ClosedDay(0, Date,Type,Jour, Commentaire);
 
     console.log(closedDay);
 
@@ -46,9 +46,22 @@ export class ClosedDaysService {
     
 
   }
+/**
+ * 
+ * @param id method to update the closedDays
+ */
+  editClosedDays(id) {
 
-  editClosedDays(arg0: any) {
-    throw new Error('Method not implemented.');
+    return this.http.get(`${this.uri}/closed-days${id}`);
+    
+  }
+
+  updateClosedDay(id,Date, Type, Jour, Commentaire){
+    const closedDay = new ClosedDay(id, Date,Type,Jour, Commentaire);
+
+    return this.http.put<ClosedDay>(`${this.uri}/${id}`, closedDay).subscribe(res => {
+      console.log(res);
+    }) ;
   }
  
 }

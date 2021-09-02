@@ -12,7 +12,8 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 export class ClosedDaysEditComponent implements OnInit {
 
   angForm: FormGroup;
-  closedDay: ClosedDay;
+  closedDay: any;
+
 
   constructor(private route:ActivatedRoute, private router:Router, private as:ClosedDaysService , private fb: FormBuilder) { 
     this.createForm();
@@ -23,13 +24,44 @@ export class ClosedDaysEditComponent implements OnInit {
       Date: [ '', Validators.required],
       Type: ['', Validators.required],
       Jour: ['', Validators.required],
-      Commentaires: ['', Validators.required]
+      Commentaire: ['', Validators.required]
     })
     
   }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params =>{
+      this.as.editClosedDays(params['id']).subscribe(res => {
+        this.closedDay = res;
+    
+      });
+    });
    
     }
+
+
+   /**
+    * Method to update closedDay
+    * @param Date 
+    * @param Type 
+    * @param Jour 
+    * @param Commentaire 
+    */
+   updateClosedDay(Date, Type, Jour, Commentaire){
+    this.route.params.subscribe(params => {
+    this.as.editClosedDays(params.id).subscribe((res) => {
+      console.log('update ok');
+      this.router.navigate([this.closedDay]);
+    })
+    });
+  }
+
+  /**
+   * Method to abort the angForm
+   */
+ cancelAddClosedDay(){
+    this.router.navigateByUrl('/closeddays');
+  }
 
 }

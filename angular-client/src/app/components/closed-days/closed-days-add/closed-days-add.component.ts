@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 export class ClosedDaysAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb:FormBuilder, private as:ClosedDaysService) {
+  constructor(private fb:FormBuilder, private as:ClosedDaysService, private router:Router) {
     this.createForm();
    }
 
@@ -19,14 +20,27 @@ export class ClosedDaysAddComponent implements OnInit {
       Date: [ '', Validators.required],
       Type: ['', Validators.required],
       Jour: ['', Validators.required],
-      Commentaires: ['', Validators.required]
+      Commentaire: ['', Validators.required]
      });
    }
 
-   addClosedDay(Date, Type, Jour, Commentaires){
-     this.as.addNewClosedDay(Date, Type, Jour, Commentaires);
+   /**
+    * Method to add new closedDay
+    * @param Date 
+    * @param Type 
+    * @param Jour 
+    * @param Commentaire 
+    */
+   addClosedDay(Date, Type, Jour, Commentaire){
+     this.as.addNewClosedDay(Date, Type, Jour, Commentaire);
    }
 
+   /**
+    * Method to abort the angForm
+    */
+  cancelAddClosedDay(){
+     this.router.navigateByUrl('/closeddays');
+   }
    /*addClosedDay(){
      this.as.addNewClosedDay(this.angForm);
    }*/
