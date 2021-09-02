@@ -89,9 +89,9 @@ public class AbsenceController {
     }
 
     @DeleteMapping("absences/{id}")
-    public String removeAbsence(@PathVariable("id") long id){
+    public void removeAbsence(@PathVariable("id") long id){
         absenceService.deleteAbsence(id);
-        return "Delete succeed";
+        //return "Delete succeed";
     }
 
     /**

@@ -14,4 +14,8 @@ export class GestionAbsencesService {
   getAbsences(userId: number): Observable<Absence[]> {
     return this.http.get<Absence[]>(`${this.uri}/usersAbsences/${userId}`);
   }
+
+  deleteAbsence(id:number): Observable<Absence>{
+    return this.http.delete<Absence>(`${this.uri}/absences/${id}`);
+  }
 }
