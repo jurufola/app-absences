@@ -46,7 +46,7 @@ public class AbsenceController {
     public Set<Absence> getAbsencesByUserId(@PathVariable("id") long id){
         return absenceService.getAbsencesByUserId(id);
     }
-
+    @CrossOrigin
     @PostMapping("absences")
     public String createAbsence(@RequestBody Absence absence){
         // Overlapping test
