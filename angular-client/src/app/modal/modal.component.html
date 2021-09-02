@@ -1,0 +1,20 @@
+<div>
+    <h4>Supprimer une absence:</h4>
+    <button (click)="show(1)">Supprimer</button>
+
+    <div class="uc-modal" *ngIf="showModal === 1">
+        <div class="uc-m-content">
+            <div class="uc-m-header">
+                <span class="material-icons" (click)="close()">close</span>
+                <h4>Confirmation de suppresion</h4>
+            </div>
+            <div class="uc-m-body">
+                Confirmez-vous la suppresion de la demande suivante?
+            </div>
+            <div class="uc-m-footer">
+                <button class="btn-annuler">Annuler</button>
+                <button cla>Valider</button>
+            </div>
+        </div>
+    </div>
+</div>

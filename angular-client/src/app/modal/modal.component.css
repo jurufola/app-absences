@@ -1,0 +1,69 @@
+button {
+  padding: 15px 30px;
+  background-color: #53adc9;
+  font-size: 14px;
+  border: 0;
+  border-radius: 8px;
+  margin-right: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+.btn-annuler{
+    background-color:rgb(255, 208, 0);
+}
+
+.btn-valider{
+    background-color: yellowgreen;
+}
+
+/* modal */
+
+.uc-modal {
+  position: fixed;
+  background: #000000bf;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.uc-m-content {
+  background: #fff;
+  width: 50%;
+  margin: 0 auto;
+}
+.uc-m-header {
+  padding: 20px;
+  background: #0b3582;
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: relative;
+}
+.uc-m-header h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 200;
+}
+.uc-m-header .material-icons{
+    cursor:pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.uc-m-body {
+  padding: 20px;
+  min-height: 200px;
+}
+.uc-m-footer {
+  padding: 20px;
+  border-top: 1px dashed rgb(204, 204, 204);
+  text-align: right;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.uc-m-footer buuton {
+  margin-left: 20px;
+  margin-right: 0;
+}
