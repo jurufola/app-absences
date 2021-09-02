@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="row mb-3">
+      <div *ngIf="isSansSolde" class="row mb-3">
         <label for="motif" class="col-sm-5 col-form-label">Motif</label>
         <div class="col-sm-7">
           <textarea name="motif" id="motif" class="form-control" formControlName="reason"></textarea>

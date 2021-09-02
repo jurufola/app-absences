@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class VacationRequestComponent implements OnInit {
   createAbsenceForm: FormGroup;
   messageSuccess: string;
+  isSansSolde = false;
 
   constructor(private _fb: FormBuilder, private _absenceService: AbsenceService, private _flashMessagesService: FlashMessagesService, private router:Router) { }
 
@@ -39,6 +40,7 @@ export class VacationRequestComponent implements OnInit {
     .subscribe(value => {
       console.log(this);
       if(value==3) {
+        this.isSansSolde = true;
         /* console.log("Je suis dans le if " + value);
         console.log("this.createAbsenceForm avant " + this.createAbsenceForm);
         console.log("validator reason avant " + this.createAbsenceForm.get('reason').validator) */
@@ -47,6 +49,7 @@ export class VacationRequestComponent implements OnInit {
 
         console.log("validator reason après " + this.createAbsenceForm.get('reason').validator)
       } else {
+        this.isSansSolde = false;
         this.createAbsenceForm.controls['reason'].clearValidators();
       }
       this.createAbsenceForm.controls['reason'].updateValueAndValidity();
