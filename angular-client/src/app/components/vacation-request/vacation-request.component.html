@@ -26,7 +26,7 @@
               <div *ngIf="createAbsenceForm.get('dates.endDate').errors.required">
                 La date de fin est requise.
               </div>
-              
+
             </div>
             <div *ngIf="createAbsenceForm.get('dates').invalid && createAbsenceForm.get('dates.startDate').dirty && createAbsenceForm.get('dates.endDate').dirty" class="alert alert-danger mt-3">
               La date de début ne peut être postérieure à la date de fin.
@@ -68,7 +68,7 @@
       </div>
       <div class="row mb-3 d-flex justify-content-end">
         <div class="col-sm-6">
-          <button class="btn btn-danger">Annuler</button>
+          <button class="btn btn-danger" (click)="cancelAjoutAbsence()">Annuler</button>
         </div>
         <div class="col-sm-6">
           <button class="btn btn-success" type="submit"
