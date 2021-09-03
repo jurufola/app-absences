@@ -35,7 +35,7 @@ import { ClosedDaysService } from './services/closed-days/closed-days.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService, GestionAbsencesService],
+  providers: [AuthenticationService, GestionAbsencesService, ClosedDaysService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
