@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="d-flex flex-column align-items-center">
+    <h2 class="m-5">Demande Abscence</h2>
+    <form class="vacationRequest" [formGroup]="createAbsenceForm" (ngSubmit)="createAbsence()">
+      <div formGroupName="dates">
+        <div class="row mb-3">
+          <label for="debut" class="col-sm-5 col-form-label">Date de début</label>
+          <div class="col-sm-7">
+            <input type="date" class="form-control" id="debut" formControlName="startDate">
+            <div
+              *ngIf="createAbsenceForm.get('dates.startDate').invalid && (createAbsenceForm.get('dates.startDate').dirty || createAbsenceForm.get('dates.startDate').touched)"
+              class="alert alert-danger mt-3">
+              <div *ngIf="createAbsenceForm.get('dates.startDate').errors.required">
+                La date de début est requise.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="fin" class="col-sm-5 col-form-label">Date de Fin</label>
+          <div class="col-sm-7">
+            <input type="date" class="form-control" id="fin" formControlName="endDate">
+            <div
+              *ngIf="createAbsenceForm.get('dates.endDate').invalid && (createAbsenceForm.get('dates.endDate').dirty || createAbsenceForm.get('dates.endDate').touched)"
+              class="alert alert-danger mt-3">
+              <div *ngIf="createAbsenceForm.get('dates.endDate').errors.required">
+                La date de fin est requise.
+              </div>
+
+            </div>
+            <div *ngIf="createAbsenceForm.get('dates').invalid && createAbsenceForm.get('dates.startDate').dirty && createAbsenceForm.get('dates.endDate').dirty" class="alert alert-danger mt-3">
+              La date de début ne peut être postérieure à la date de fin.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="type" class="col-sm-5 col-form-label">Type de congé</label>
+        <div class="col-sm-7">
+          <select name="type" id="type" class="form-control" formControlName="type">
+            <option value="0">Congé payé</option>
+            <option value="1">RTT</option>
+            <option value="2">FERIE</option>
+            <option value="3">Congé sans solde</option>
+          </select>
+          <div
+            *ngIf="createAbsenceForm.get('type').invalid && (createAbsenceForm.get('type').dirty || createAbsenceForm.get('type').touched)"
+            class="alert alert-danger mt-3">
+            <div *ngIf="createAbsenceForm.get('type').errors.required">
+              Le type de congé est requis.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isSansSolde" class="row mb-3">
+        <label for="motif" class="col-sm-5 col-form-label">Motif</label>
+        <div class="col-sm-7">
+          <textarea name="motif" id="motif" class="form-control" formControlName="reason"></textarea>
+          <div
+            *ngIf="createAbsenceForm.get('reason').invalid && (createAbsenceForm.get('reason').dirty || createAbsenceForm.get('reason').touched)"
+            class="alert alert-danger mt-3">
+            <div *ngIf="createAbsenceForm.get('reason').errors.required">
+              Le motif est requis.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 d-flex justify-content-end">
+        <div class="col-sm-6">
+          <button class="btn btn-danger" (click)="cancelAjoutAbsence()">Annuler</button>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-success" type="submit"
+            [disabled]="createAbsenceForm.invalid || createAbsenceForm.pristine">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

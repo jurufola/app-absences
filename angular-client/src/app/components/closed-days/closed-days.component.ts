@@ -15,27 +15,22 @@ export class ClosedDaysComponent implements OnInit {
   holidays: ClosedDay[];
   user:User;
 
-
-
-
-  constructor(private as:ClosedDaysService, private authService: AuthenticationService, private router:Router) {
+  constructor(private as: ClosedDaysService, private authService: AuthenticationService, private router:Router) {
 
 
    }
 
   ngOnInit(){
-  
+
     this.user = this.authService.currentUserValue;
-    
+
 
     this.getAllDatas();
- 
 
-    
-    
+
   }
 /**
- * to view the all holidays 
+ * to view the all holidays
  * @returns holidays
  */
   getAllDatas(){
@@ -49,8 +44,12 @@ export class ClosedDaysComponent implements OnInit {
     });
 
 
-    
+
   }
+  /**
+   * Get AdminRole if the user is Admin
+   * @returns true
+   */
 
   isUserAdmin(): boolean {
 
@@ -75,6 +74,13 @@ export class ClosedDaysComponent implements OnInit {
     alert('Voulez-vous bien supprimer cette RTT ou Jour férié? !');
       this.router.navigateByUrl('/closeddays');
   }
+
+   /**
+   * Return to Closeddays page
+   */
+    returnHome(){
+      this.router.navigateByUrl('closed-days');
+    }
 
 }
 

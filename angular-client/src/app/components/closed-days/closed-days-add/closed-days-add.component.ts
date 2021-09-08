@@ -50,4 +50,11 @@ export class ClosedDaysAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Return to Closeddays page
+   */
+  returnHome(){
+    this.router.navigateByUrl('home');
+  }
+
 }
