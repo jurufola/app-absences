@@ -6,6 +6,7 @@ import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn,
 import { Absence } from 'src/app/models/absence';
 import { User } from 'src/app/models/user';
 import { FlashMessagesService } from 'flash-messages-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vacation-request',
@@ -15,8 +16,9 @@ import { FlashMessagesService } from 'flash-messages-angular';
 export class VacationRequestComponent implements OnInit {
   createAbsenceForm: FormGroup;
   messageSuccess: string;
+  isSansSolde = false;
 
-  constructor(private _fb: FormBuilder, private _absenceService: AbsenceService, private _flashMessagesService: FlashMessagesService) { }
+  constructor(private _fb: FormBuilder, private _absenceService: AbsenceService, private _flashMessagesService: FlashMessagesService, private router:Router) { }
 
   ngOnInit(): void {
     this.createAbsenceForm = this._fb.group({
@@ -38,6 +40,7 @@ export class VacationRequestComponent implements OnInit {
     .subscribe(value => {
       console.log(this);
       if(value==3) {
+        this.isSansSolde = true;
         /* console.log("Je suis dans le if " + value);
         console.log("this.createAbsenceForm avant " + this.createAbsenceForm);
         console.log("validator reason avant " + this.createAbsenceForm.get('reason').validator) */
@@ -46,6 +49,7 @@ export class VacationRequestComponent implements OnInit {
 
         console.log("validator reason après " + this.createAbsenceForm.get('reason').validator)
       } else {
+        this.isSansSolde = false;
         this.createAbsenceForm.controls['reason'].clearValidators();
       }
       this.createAbsenceForm.controls['reason'].updateValueAndValidity();
@@ -57,10 +61,7 @@ export class VacationRequestComponent implements OnInit {
     console.log(this.createAbsenceForm);
     console.log(this.createAbsenceForm.value.dates.startDate);
     console.log(this.createAbsenceForm.value.type);
-    const abscence = new Absence(0, (this.createAbsenceForm.value.type),
-      new Date(this.createAbsenceForm.value.dates.startDate), new Date(this.createAbsenceForm.value.dates.endDate),
-      this.createAbsenceForm.value.reason, Status.INITIALE, new User(1, "jdoe", "doe123", "Doe", "John", 22, 6));
-    console.log(abscence);
+
     this._absenceService.addAbsence(this.createAbsenceForm);
     //this._flashMessagesService.show(this.messageSuccess, { cssClass: 'alert-success', timeout: 3000 });
 
@@ -103,6 +104,10 @@ export class VacationRequestComponent implements OnInit {
       }
       return null;
     }
+  }
+
+  cancelAjoutAbsence(){
+    this.router.navigateByUrl('/gestion-absences');
   }
 
 
