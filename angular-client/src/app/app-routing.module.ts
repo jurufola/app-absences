@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'closed-days/add', component: ClosedDaysAddComponent, canActivate: [AuthenticationGuard] }, // path for add closedDays
   { path: 'closed-days/edit', component: ClosedDaysEditComponent, canActivate: [AuthenticationGuard] }, // path for update closedDays
   { path: 'closed-days/delete', component: ClosedDaysDeleteComponent, canActivate: [AuthenticationGuard] }, // path for closedDays
-
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'gestion-absences', component: GestionAbsenceComponent, canActivate: [AuthenticationGuard] },
   { path: 'demande-abscence', component: VacationRequestComponent, canActivate: [AuthenticationGuard] }

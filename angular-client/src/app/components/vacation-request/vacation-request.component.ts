@@ -1,5 +1,5 @@
 import { Type } from './../../models/type';
-import { AbsenceService } from './../../services/absence.service';
+import { AbsenceService } from '../../services/absence/absence.service';
 import { Status } from './../../models/status';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ControlContainer, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';

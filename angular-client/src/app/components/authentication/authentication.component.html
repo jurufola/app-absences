@@ -1,28 +1,28 @@
 <div class="card m-3  p-3 text-center">
     <div class="card-img mb-4">
-        <img src="../../../assets/images/angular.png" width="100" alt="image">
+        <img src="../../../assets/images/diginamic.png" width="100" height="100" alt="image" class="rounded">
     </div>
-    <h5 class="m-4">GDA</h5>
-    <h5 class="m-4">Gestion des Absences</h5>
+    <h5 class="m-2">GDA</h5>
+    <h5 class="m-2">Gestion des Absences</h5>
     <div class="card-body">
         <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-            <div class="form-group row justify-content-cenetr">
-                <label class="col-6 ">Login</label>
-                <input class="form-control" formControlName="login" class="col-4 mb-3" />
+            <div class="form-group row justify-content-center">
+                <label class="col-4 ">Login</label>
+                <input class="form-control" formControlName="login" class="col-3 mb-3" />
                 <div *ngIf="loginForm.get('login').invalid && (loginForm.get('login').dirty || loginForm.get('login').touched)" class="alert alert-danger mt-3">
-                    <div *ngIf="loginForm.get('login').errors.required">Login is required</div>
+                    <div *ngIf="loginForm.get('login').errors.required"> Le Login est obligatoire</div>
                 </div>
 
             </div>
 
-            <div class="form-group row p-4">
-                <label class="col-6">Mot de passe</label>
-                <input type="password" class="form-control" formControlName="password" class="col-4 mb-3" />
+            <div class="form-group row justify-content-center">
+                <label class="col-4 ">Mot de passe</label>
+                <input type="password" formControlName="password" class="col-3 mb-3" />
                 <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)" class="alert alert-danger mt-3">
-                    <div *ngIf="loginForm.get('password').errors.required">Password is required</div>
+                    <div *ngIf="loginForm.get('password').errors.required">Le Mot de Passe est obligatoire</div>
                 </div>
             </div>
-            <div *ngIf="invalidLogin"  class="alert alert-danger mt-3">Invalid credentials</div>
+            <div *ngIf="invalidLogin" class="alert alert-danger mt-3">La saisie des données est obligatoire</div>
             <div class="text-center m-2">
                 <button type="submit" class="btn btn-primary mr-1 ">Connexion</button>
             </div>

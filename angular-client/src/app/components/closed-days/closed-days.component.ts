@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClosedDay } from 'src/app/models/closed-day';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
@@ -14,10 +15,7 @@ export class ClosedDaysComponent implements OnInit {
   holidays: ClosedDay[];
   user:User;
 
-
-
-
-  constructor(private closedDaysService: ClosedDaysService, private authService: AuthenticationService) {
+  constructor(private closedDaysService: ClosedDaysService, private authService: AuthenticationService, private router:Router) {
 
 
    }
@@ -28,8 +26,6 @@ export class ClosedDaysComponent implements OnInit {
 
 
     this.getAllDatas();
-
-
 
 
   }
@@ -50,6 +46,10 @@ export class ClosedDaysComponent implements OnInit {
 
 
   }
+  /**
+   * Get AdminRole if the user is Admin
+   * @returns true
+   */
 
   isUserAdmin(): boolean {
 
@@ -59,6 +59,13 @@ export class ClosedDaysComponent implements OnInit {
     return false;
   }
 
+
+   /**
+   * Return to Closeddays page
+   */
+    returnHome(){
+      this.router.navigateByUrl('closed-days');
+    }
 
 }
 

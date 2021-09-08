@@ -1,5 +1,5 @@
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { GestionAbsencesService } from './../../services/gestion-absences.service';
+import { GestionAbsencesService } from '../../services/gestion-absences/gestion-absences.service';
 import { Component, OnInit } from '@angular/core';
 import { Absence } from 'src/app/models/absence';
 import { User } from 'src/app/models/user';

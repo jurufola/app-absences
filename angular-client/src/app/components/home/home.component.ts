@@ -10,10 +10,12 @@ import { User } from 'src/app/models/user';
 export class HomeComponent implements OnInit {
 
   user: User;
+
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.user = this.authService .currentUserValue;
+    
   }
 
 }

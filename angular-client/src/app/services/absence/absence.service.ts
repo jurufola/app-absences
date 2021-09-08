@@ -1,12 +1,12 @@
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { Absence } from './../models/absence';
+import { Absence } from '../../models/absence';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { FormGroup } from '@angular/forms';
-import { Status } from '../models/status';
-import { User } from '../models/user';
+import { Status } from '../../models/status';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,10 @@ export class AbsenceService {
       console.log(`réponse => ${data}`);
       console.log("type réponse => " + typeof data);
       if (data.includes("prise en compte")) {
-        this._flashMessagesService.show(data, { cssClass: 'alert-success', timeout: 5000 });
+        this._flashMessagesService.show(data, { cssClass: 'alert-success', timeout: 3000 });
         myForm.reset();
       }else {
-        this._flashMessagesService.show(data, { cssClass: 'alert-warning', timeout: 5000 });
+        this._flashMessagesService.show(data, { cssClass: 'alert-warning', timeout: 3000 });
       }
 
 

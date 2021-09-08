@@ -52,8 +52,9 @@
                         Le commentaire est obligatoire
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center m-3">
                     <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaires.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
+                    <button (click)="returnHome()" type="button" class="btn btn-warning m-3">Annuler </button>
                 </div>
             </form>
         </div>

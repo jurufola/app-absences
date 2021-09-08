@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ClosedDaysService } from 'src/app/services/closed-days/closed-days.serv
 export class ClosedDaysAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb:FormBuilder, private as:ClosedDaysService) {
+  constructor(private fb:FormBuilder, private as:ClosedDaysService, private router:Router) {
     this.createForm();
    }
 
@@ -33,6 +34,13 @@ export class ClosedDaysAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Return to Closeddays page
+   */
+  returnHome(){
+    this.router.navigateByUrl('home');
   }
 
 }
