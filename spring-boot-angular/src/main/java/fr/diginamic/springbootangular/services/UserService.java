@@ -56,7 +56,10 @@ public class UserService {
             System.out.println("This user already exist in database");
         }
         else {
-            // 2 - We save the new user in the database
+            // 2 - Encrypt password of user
+        userRepository.encryptPassword(newUser.getMotDePasse());
+
+            // 3 - We save the new user in the database
             userRepository.save(newUser);
             System.out.println(newUser.getLogin() + " added to database");
         }
@@ -77,6 +80,21 @@ public class UserService {
         else {
             System.out.println("No user corresponding to this id in database");
         }
+
+    }
+
+    /**
+     * Encrypt user password
+     * @param motDePasse
+     * @return
+     */
+    public String encryptPassword(String motDePasse){
+        String crypte="";
+        for (int i=0; i<motDePasse.length();i++)  {
+            int c=motDePasse.charAt(i)^48;
+            crypte=crypte+(char)c;
+        }
+        return crypte;
     }
 
 }

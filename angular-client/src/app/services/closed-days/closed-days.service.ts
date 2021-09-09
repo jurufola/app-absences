@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ClosedDaysService {
  
-
-
   private uri = environment.backendUrl;
 
   constructor(private http: HttpClient) {}
