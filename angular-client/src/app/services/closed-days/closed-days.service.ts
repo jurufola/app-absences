@@ -33,7 +33,6 @@ export class ClosedDaysService {
  */
   addNewClosedDay(Date, Type, Jour, Commentaire){
     const closedDay  = new ClosedDay(0, Date,Type,Jour, Commentaire);
-
     console.log(closedDay);
 
     this.http.post(`${this.uri}/closed-days`, closedDay,{ responseType: 'text' }).subscribe(res => {

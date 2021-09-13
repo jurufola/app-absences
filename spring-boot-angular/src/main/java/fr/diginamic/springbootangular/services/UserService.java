@@ -5,7 +5,6 @@ import fr.diginamic.springbootangular.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,15 +55,19 @@ public class UserService {
             System.out.println("This user already exist in database");
         }
         else {
-            // 2 - Encrypt password of user
-        userRepository.encryptPassword(newUser.getMotDePasse());
-
+            // 2 - Encrypt password of newUser
+            userAlreadyIn.get().setMotDePasse(encryptPassword(newUser.getMotDePasse(), newUser));
             // 3 - We save the new user in the database
             userRepository.save(newUser);
             System.out.println(newUser.getLogin() + " added to database");
         }
     }
 
+    /**
+     * Update the user exist in database
+     * @param userId
+     * @param user
+     */
     public void updateUser(long userId, User user){
         Optional<User> userData = userRepository.findById(userId);
         if(userData.isPresent()){
@@ -84,17 +87,25 @@ public class UserService {
     }
 
     /**
-     * Encrypt user password
+     * Encrypt user password exist in database
      * @param motDePasse
+     * @param user
      * @return
      */
-    public String encryptPassword(String motDePasse){
-        String crypte="";
-        for (int i=0; i<motDePasse.length();i++)  {
-            int c=motDePasse.charAt(i)^48;
-            crypte=crypte+(char)c;
+    public String encryptPassword(String motDePasse, User user){
+
+        Optional<User> userPassword = userRepository.findByMotDePasse(motDePasse);
+        if(userPassword.isPresent()){
+            User passwordEncrypt = userPassword.get();
+            motDePasse = " ";
+            for(int i = 0; i < motDePasse.length(); i++){
+                int c=user.getMotDePasse().charAt(i)^48;
+                motDePasse=motDePasse+(char)c;
+            }
+            passwordEncrypt.setMotDePasse(user.getMotDePasse());
         }
-        return crypte;
+
+        return motDePasse;
     }
 
 }

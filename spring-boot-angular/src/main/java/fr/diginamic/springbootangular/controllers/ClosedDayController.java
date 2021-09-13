@@ -30,9 +30,15 @@ public class ClosedDayController {
         return "Closed day added successfully";
     }
 
+    @PutMapping("closed-days/{id}")
+    public String updateClosedDay(@RequestBody ClosedDay closedDay, @PathVariable("id") long id){
+        closedDayService.updateClosedDay(closedDay, id);
+        return "Closed day updated successfully";
+    }
+
     @DeleteMapping("closed-days/{id}")
     public String removeClosedDay(@PathVariable("id") long id){
-        closedDayService    .deleteClosedDay(id);
+        closedDayService.deleteClosedDay(id);
         return "Delete succeed";
     }
 }

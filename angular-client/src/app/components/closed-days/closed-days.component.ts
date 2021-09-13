@@ -64,15 +64,17 @@ export class ClosedDaysComponent implements OnInit {
    * @param id 
    */
   deleteClosedDay(id){
+    
 
     this.as.deleteClosedDay(id).subscribe(res=> {
       this.holidays.pop();
 
       console.log(this.holidays);
+      alert('Voulez-vous bien supprimer cette RTT ou Jour férié? !');
+      this.router.navigateByUrl('/closeddays');
       
     })
-    alert('Voulez-vous bien supprimer cette RTT ou Jour férié? !');
-      this.router.navigateByUrl('/closeddays');
+   
   }
 
    /**

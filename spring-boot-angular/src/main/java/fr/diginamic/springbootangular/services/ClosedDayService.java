@@ -63,6 +63,27 @@ public class ClosedDayService {
     }
 
     /**
+     * Update closedDay in Database
+     * @param closedDay
+     * @param closedDayId
+     */
+    public void updateClosedDay(ClosedDay closedDay, Long id){
+        //1 - We get the closedDay already exist in database by Id
+        Optional<ClosedDay> closedDayById = closedDayRepository.findById(closedDay.getId());
+         if(closedDayById.isPresent()){
+             ClosedDay closedDayUpdate = closedDayById.get();
+             closedDayUpdate.setDate(closedDay.getDate());
+             closedDayUpdate.setCategory(closedDay.getCategory());
+             closedDayUpdate.setJour(closedDay.getJour());
+             closedDayUpdate.setCommentaire(closedDay.getCommentaire());
+         }
+         else{
+             System.out.println("No closedDay corresponding to this id in database" );
+         }
+
+    }
+
+    /**
      * Remove closed day from database
      * @param id
      */

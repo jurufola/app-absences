@@ -33,6 +33,7 @@ export class ClosedDaysAddComponent implements OnInit {
     */
    addClosedDay(Date, Type, Jour, Commentaire){
      this.as.addNewClosedDay(Date, Type, Jour, Commentaire);
+     console.log("Your closed day is added successfully !");
      this.router.navigateByUrl('/closeddays');
    }
 
@@ -40,11 +41,9 @@ export class ClosedDaysAddComponent implements OnInit {
     * Method to abort the angForm
     */
   cancelAddClosedDay(){
-     this.router.navigateByUrl('/closeddays');
+     this.router.navigateByUrl('/closed-days');
    }
-   /*addClosedDay(){
-     this.as.addNewClosedDay(this.angForm);
-   }*/
+  
 
 
   ngOnInit(): void {

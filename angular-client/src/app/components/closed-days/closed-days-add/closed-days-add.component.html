@@ -54,7 +54,7 @@
                 </div>
                 <div class="text-center m-2">
                     <button (click)="addClosedDay(Date.value, Type.value, Jour.value, Commentaire.value)" type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Ajouter JF/RTT </button>
-                    <button (click)="cancelAddClosedDay()" type="submit" class="btn btn-warning m-3">Annuler </button>
+                    <button (click)="cancelAddClosedDay()" type="reset" class="btn btn-warning m-3">Annuler </button>
                 </div>
             </form>
         </div>
