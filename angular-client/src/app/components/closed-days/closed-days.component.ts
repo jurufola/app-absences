@@ -38,7 +38,7 @@ export class ClosedDaysComponent implements OnInit {
     this.as.getDatas().subscribe((res:ClosedDay[])=> {
       this.holidays = res;
       res.forEach(element => {
-        console.log(element);
+        //console.log(element);
       });
       console.log(this.holidays.length);
     });
@@ -60,22 +60,23 @@ export class ClosedDaysComponent implements OnInit {
   }
 
   /**
-   * Method to delete a closedDay
+   * To delete a closedDay in database
    * @param id 
    */
   deleteClosedDay(id){
     
-
     this.as.deleteClosedDay(id).subscribe(res=> {
-      this.holidays.pop();
+      this.holidays.splice(id, 1);
 
-      console.log(this.holidays);
       alert('Voulez-vous bien supprimer cette RTT ou Jour férié? !');
-      this.router.navigateByUrl('/closeddays');
+
+      //console.log(this.holidays + "has been deleted successfully !");
+
+      this.router.navigateByUrl('/closed-days');
       
-    })
+    });
    
-  }
+  } 
 
    /**
    * Return to Closeddays page

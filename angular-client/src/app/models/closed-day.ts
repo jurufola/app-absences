@@ -4,17 +4,8 @@ enum JourSemaine { LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE };
 
 
 export class ClosedDay {
-  id: number;
-  date: Date;
-  category: Category;
-  jour: JourSemaine;
-  commentaire: string;
-
-  constructor(id:number, date:Date, category:Category, jour: JourSemaine, commentaire: string){
-    this.id = id;
-    this.date = date;
-    this.category = category;
-    this.jour = jour;
-    this.commentaire = commentaire;
+  
+  constructor(public id:number, public date:Date, public category:Category, public jour: JourSemaine, public commentaire: string){
+   
   }
 }

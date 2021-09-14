@@ -15,17 +15,18 @@ export class ClosedDaysService {
 
 
  /**
-  * to view all datas of the closedDays 
+  * to show all closedDays 
   * @returns closed-days 
   */
   getDatas():Observable <ClosedDay[]>  {
     
     //console.log('holidays');
-    return this.http.get<ClosedDay[]>(`${this.uri}/closed-days`);
+    return this.http
+    .get<ClosedDay[]>(`${this.uri}/closed-days`);
   }
 
 /**
- * service to add new closedDays
+ * to add new closedDays
  * @param Date 
  * @param Type 
  * @param Jour 
@@ -34,40 +35,47 @@ export class ClosedDaysService {
   addNewClosedDay(Date, Type, Jour, Commentaire){
     const closedDay  = new ClosedDay(0, Date,Type,Jour, Commentaire);
     console.log(closedDay);
-
-    this.http.post(`${this.uri}/closed-days`, closedDay,{ responseType: 'text' }).subscribe(res => {
-
-      console.log('Done');
+    return this.http
+    .post(`${this.uri}/closed-days`, closedDay,{ responseType: 'text' })
+    .subscribe(res => {
       console.log(res);
     });
     
 
   }
 /**
- * 
+ * get closedDay by id in database  before updating
  * @param id method to edit the closedDays
  */
-  editClosedDays(id):Observable <ClosedDay>{
+  editClosedDay(id:number):Observable <ClosedDay>{
 
-    return this.http.get<ClosedDay>(`${this.uri}/closed-days/${id}`);
+    return this.http
+    .get<ClosedDay>(`${this.uri}/closed-days/${id}`);
     
   }
 
-
+/**
+ * 
+ * @param id update closedDay in database
+ * @param Date 
+ * @param Type 
+ * @param Jour 
+ * @param Commentaire 
+ * @returns 
+ */
   updateClosedDay(id,Date, Type, Jour, Commentaire){
-    const closedDay = new ClosedDay(id, Date,Type,Jour, Commentaire);
+    const closedDay = { id, Date,Type,Jour, Commentaire };
 
-    return this.http.put<ClosedDay>(`${this.uri}/closed-days${id}`, closedDay).subscribe(res => {
-      console.log(res);
-    }) ;
+    return this.http
+    .put<ClosedDay>(`${this.uri}/closed-days/${id}`, closedDay);
   }
 /**
- * get a closedDay and delete it in the database
+ * delete closedDay it in the database
  * @param id 
  */
-  deleteClosedDay(id): Observable <ClosedDay> {
+  deleteClosedDay(id:number): Observable <ClosedDay> {
 
-    return  this.http.get<ClosedDay>(`${this.uri}/closed-days/${id}`);
+    return  this.http.delete<ClosedDay>(`${this.uri}/closed-days/${id}`);
 
   }
 

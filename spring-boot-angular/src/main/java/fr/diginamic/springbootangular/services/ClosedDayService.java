@@ -76,6 +76,8 @@ public class ClosedDayService {
              closedDayUpdate.setCategory(closedDay.getCategory());
              closedDayUpdate.setJour(closedDay.getJour());
              closedDayUpdate.setCommentaire(closedDay.getCommentaire());
+             System.out.println("This closedDay is update in the database");
+
          }
          else{
              System.out.println("No closedDay corresponding to this id in database" );

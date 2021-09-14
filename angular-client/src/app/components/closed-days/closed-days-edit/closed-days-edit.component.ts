@@ -33,7 +33,7 @@ export class ClosedDaysEditComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params =>{
-      this.as.editClosedDays(params['id']).subscribe(res => {
+      this.as.editClosedDay(params['id']).subscribe(res => {
         this.closedDay = res;
     
       });
@@ -50,19 +50,20 @@ export class ClosedDaysEditComponent implements OnInit {
     * @param Commentaire 
     */
    updateClosedDay(Date, Type, Jour, Commentaire){
-    this.route.params.subscribe(params => {
-    this.as.editClosedDays(params.id).subscribe((res) => {
-      console.log('update ok');
-      this.router.navigate([this.closedDay]);
-    })
-    });
+     this.route.params.subscribe(params => {
+       this.as.updateClosedDay(Date, Type, Jour, Commentaire, params.id)
+       .subscribe((res) => this.router.navigate([this.closedDay]));
+       this.router.navigateByUrl('/closed-days');
+     });
+   
   }
+
 
   /**
    * Method to cancel the angForm
    */
- cancelAddClosedDay(){
-    this.router.navigateByUrl('/closeddays');
+ cancelUpdateClosedDay(){
+    this.router.navigateByUrl('/closed-days');
   }
 
 }
