@@ -222,4 +222,13 @@ public class AbsenceService {
         return date.isBefore(LocalDate.now());
     }
 
+    /**
+     * Return a set of Absence with status set in parameters, ordered by Id descendant
+     * @param status status of absence
+     * @return
+     */
+    public  Set<Absence> findByStatusOrderByIdAsc(Absence.Status status) {
+        return absenceRepository.findByRequestStatusOrderByIdAsc(status);
+    }
+
 }

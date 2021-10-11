@@ -13,4 +13,5 @@ public interface AbsenceRepository extends JpaRepository <Absence , Long> {
     Optional<Absence> findByDateDebutAndDateFinAndUser(LocalDate dateDebut, LocalDate dateFin, User user);
 
     Set<Absence> findAllByUserId(long userId);
+    Set<Absence> findByRequestStatusOrderByIdAsc(Absence.Status status);
 }

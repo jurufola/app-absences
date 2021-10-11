@@ -1,20 +1,63 @@
 package fr.diginamic.springbootangular;
 
+import fr.diginamic.springbootangular.entities.Absence;
+import fr.diginamic.springbootangular.entities.User;
+import fr.diginamic.springbootangular.repositories.AbsenceRepository;
 import fr.diginamic.springbootangular.services.AbsenceService;
+import fr.diginamic.springbootangular.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Component
 public class Scheduler {
 
     @Autowired
     AbsenceService absenceService;
-    @Scheduled(cron = "0 40 14 * * *")
+    @Autowired
+    AbsenceRepository absenceRepository;
+    @Autowired
+    EmailService emailService;
+    @Scheduled(cron = "0 53 14 * * *")
     public void batch(){
+
+
+
+        /*** All the absences withe initiale status ordered by descendant id ***/
+        Set<Absence> absences =  absenceService.findByStatusOrderByIdAsc(Absence.Status.INITIALE);
+        int nbDaysOfAbsence = 0;
+        for (Absence absence : absences) {
+            System.out.println(absence);
+            nbDaysOfAbsence = workingDays(absence.getDateDebut(), absence.getDateFin());
+            User user = absence.getUser();
+            System.out.println("Id user " + user.getId() + "user " + user);
+            System.out.println("nombre de jours d'absence : " + nbDaysOfAbsence);
+            if (nbDaysOfAbsence <= user.getCongesPayesRestants() || nbDaysOfAbsence <= user.getRttRestants()) {
+                absence.setRequestStatus(Absence.Status.EN_ATTENTE_VALIDATION);
+                String recipient = "moulaye.haidara@laposte.net";
+                String subject = "Nouvelle absence en attentte de validation de " + user.getNom() + " " + user.getPrenom();
+                String content =
+                        "Merci accepter ou de rejeter la demande d'absence de " + user.getNom() + " "
+                                + user.getPrenom() +" du " + absence.getDateDebut() + " au " + absence.getDateFin() ;
+
+                try {
+                    emailService.sendEmail(recipient, subject, content);
+                } catch (UnsupportedEncodingException | MessagingException e) {
+                    System.out.println(e.getStackTrace());
+                }
+            }else {
+                absence.setRequestStatus(Absence.Status.REJETEE);
+            }
+            //Update absence in all cases
+            absenceRepository.save(absence);
+
+        }
 
 
     }
